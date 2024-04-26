@@ -1,0 +1,145 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TTLProject2.Areas.Identity.Data.ApplicationUser> SignInManager
+@inject UserManager<TTLProject2.Areas.Identity.Data.ApplicationUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TTLProject2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TTLProject2.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/files/2024/images/logo1.jpg" />
+    <script src="https://kit.fontawesome.com/3fabc68040.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+  
+</head>
+<body>
+    <header >
+        <div class="container-fluid" style="padding: 0 ; margin: 0;">
+            <img src="~/files/2024/images/banner.png" style="width:100%" />
+        </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow " style="padding:0;margin:0;background-color:#1bb6ee">
+            <div class="container-lg" style="">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/files/2024/images/logo1.jpg" style="width:50px ; border-radius:50%;" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+               
+               
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 " style="font-size:1.2rem;" >
+                        <li class="nav-item">
+                            
+                            <a class="nav-link text-white fs-6"  asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fs-6" asp-area="" asp-controller="Home" asp-action="Privacy">Giới Thiệu </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fs-6" >Tuyển Sinh 10 </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tra cứu </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-item border-bottom p-3 menu-list">
+                                    <i class="fa-solid fa-caret-right"></i>
+                                    <a href="" class="dropdown-link fs-6 text-decoration-none ">Tra cứu điểm thi học kì</a>
+                                </div>
+                                <div class="dropdown-item border-bottom p-3 menu-list">
+                                    <i class="fa-solid fa-caret-right"></i>
+                                    <a href="" class="dropdown-link fs-6 text-decoration-none ">Tra cứu điểm thi học sinh giỏi</a>
+                                </div>
+                                <div class="dropdown-item border-bottom p-3  menu-list">
+                                    <i class="fa-solid fa-caret-right"></i>
+                                    <a href="" class="dropdown-link fs-6 text-decoration-none ">Tra cứu lớp học</a>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var roles = await UserManager.GetRolesAsync(user!);
+                            if (roles.Contains("Quản Trị"))
+                            {
+
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quản Trị Hệ Thống</a>
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-item border-bottom p-3 menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a href="" class="dropdown-link fs-6 text-decoration-none " >Quản Lý Thí Sinh Đăng Kí</a>
+                                        </div>
+                                        <div class="dropdown-item border-bottom p-3 menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="QuanLyHocSinh">Quản lý học sinh</a>
+                                        </div>
+                                        <div class="dropdown-item border-bottom p-3  menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="QuanLyLopHoc">Quản lý lớp học </a>
+                                        </div>
+                                        <div class="dropdown-item border-bottom p-3 menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="GiaoVien">Quản Lý Giáo Viên</a>
+                                        </div>
+                                        <div class="dropdown-item border-bottom p-3  menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a href="" class="dropdown-link fs-6 text-decoration-none ">Quản lý Điểm </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+                    
+                            <partial name="_LoginPartial.cshtml" />
+                        
+                 </div>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+   
+        <div class="container-fuild">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+   
+  
+
+    <footer class="border-top text-muted" style="background-color:#1bb6ee;">
+        <div class="container text-center p-3 text-white">
+            <h4>
+                TRƯỜNG TRUNG HỌC PHỔ THÔNG THẠNH LỘC
+            </h4>
+            <h4>Địa chỉ: 116 Nguyễn Thị Sáu (TL30), Khu phố 1, phường Thạnh Lộc, Quận 12, Tp.HCM</h4>
+            <h5>Điện thoại: 028.37160098 - 028.38919010 - 028.36086256</h5>
+            <h5>Email: thptthanhloc.hcm@gmail.com</h5>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+
+</html>
+

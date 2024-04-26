@@ -1,0 +1,334 @@
+﻿@model TTLProject2.Models.LopHocViewModel
+@using Microsoft.AspNetCore.Mvc
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Quản Lý Lớp Học";
+}
+<h1>Quản Lý Lớp Học</h1>
+
+
+<!--Datatable-->
+<div id="dnn_ctr496_ContentPane" style="position:relative">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:76%;top:4%;z-index:1000;border-radius:50px;">
+        <i class="fa-solid fa-plus"></i>
+        Thêm Mới 
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm Mới Lớp Học</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="quanLyLopHoc" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="" class="form-label">Mã Lớp Học</label>
+                                <input type="text" class="form-control" id="" autocomplete="MaLopHoc" aria-required="true" placeholder="Vd : 10A11" asp-for="MaLopHoc">
+                                <span asp-validation-for="MaLopHoc" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label for="" class="form-label">Tên Lớp Học</label>
+                                <input type="text" class="form-control" id="" autocomplete="TenLopHoc" aria-required="true" placeholder="Vd : 10A11" asp-for="TenLopHoc">
+                                <span asp-validation-for="TenLopHoc" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="" class="form-label">Sĩ Số Lớp </label>
+                                <input type="text" class="form-control" id="" autocomplete="SiSo" aria-required="true" placeholder="Vd : 45" asp-for="SiSo">
+                                <span asp-validation-for="SiSo" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="" class="form-label">Học Ngoại Ngữ </label>
+                                <input type="text" class="form-control" id="" autocomplete="NgoaiNgu" aria-required="true" placeholder="Vd : Tiếng Anh" asp-for="HocNgoaiNgu">
+                                <span asp-validation-for="HocNgoaiNgu" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="" class="form-label">Niên Khóa</label>
+                                <select class="form-select" aria-label="Default select example" asp-for="MaNienKhoa" asp-items="Model.DanhSachNienKhoa">
+                                    <option hidden disabled selected>-- Chọn Niên Khóa --</option>
+
+                                </select>
+                                <span asp-validation-for="MaNienKhoa" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="" class="form-label">Khối</label>
+                                <select class="form-select" aria-label="Default select example" asp-for="MaKhoi" asp-items="Model.DanhSachKhoi">
+                                    <option hidden disabled selected>-- Chọn Khối --</option>
+
+                                </select>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="" class="form-label">Giáo Viên Chủ Nhiệm</label>
+                                <select class="form-select" aria-label="Default select example" asp-for="MaGiaoVien" asp-items="Model.DanhSachGiaoVien">
+                                    <option hidden disabled selected>-- Chọn Giáo Viên Chủ Nhiệm --</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End modal-->
+    <button type="button" class="btn btn-danger" id="delete-btn" style="position:absolute;left:86%;top:4%;z-index:1000;border-radius:50px;">
+        <i class="fa-solid fa-trash"></i>
+        Xóa
+    </button>
+    <button type="button" class="btn btn-primary" style="position:absolute;left:92%;top:4%;z-index:1000;border-radius:50px;">
+        <i class="fa-solid fa-envelope"></i>
+         Mail
+    </button>
+    <!-- Start_Module_484 --><div id="dnn_ctr496_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
+        <div id="dnn_ctr496_View_pnlContainer">
+            <style>
+                .DKForm {
+                    margin: 20px auto;
+                    padding: 10px 20px;
+                    border: 1px dashed #ddd;
+                }
+            </style>
+            <body>
+                <div id="">
+                    <div class="DKForm">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <table id="lophoctables" class="table table-striped table-bordered" style="min-width: max-content;">
+                                    <thead class="text-secondary-m2 bg-tbl-header ">
+                                        <tr class="text-black">
+                                            <th class="border-0">Mã lớp Học </th>
+                                            <th class="border-0">Tên Lớp Học </th>
+                                            <th class="border-0">Sĩ Số </th>
+                                            <th class="border-0">Học Ngoại Ngữ</th>
+                                            <th class="border-0">Niên Khóa</th>
+                                            <th class="border-0">Giáo Viên Chủ Nhiệm</th>
+
+                                            <th class="border-0 tbl-column-130"><i class="fa fa-cog"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+    </div>
+</div>
+<!--End Datatables-->
+<link rel="stylesheet" href="~/css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+    <script src="~/js/datatables.js"></script>
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+   
+ 
+    <script>
+        $(document).ready(function () {
+            $('#lophoctables').dataTable({
+                "bInfo": false,
+                "responsive": false,
+                "autoWidth": false,
+                "ajax": {
+                    "type": "GET",
+                    "url": "getAllLopHoc/",
+                    "contentType": "application/json",
+                    "datatype": "json",
+                    "dataSrc": function (json) {
+                        console.log(json.data)
+                        return json.data;
+                    },
+
+                },
+                "columnDefs": [
+                    { "data": "maLop", "className": "text-center font-size-15", "orderable": false, "targets": 0 },
+                    { "data": "tenLop", "className": "text-center font-size-15", "orderable": false, "targets": 1 },
+                    { "data": "siSo", "className": "text-center font-size-15", "orderable": false, "targets": 2 },
+                    { "data": "hocNgoaiNgu", "className": "text-center font-size-15", "orderable": false, "targets": 3 },
+                    { "data": "tenNienKhoa", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
+                    { "data": "hoTen", "className": "text-center font-size-15", "orderable": false, "targets": 5 },
+                    {
+                        "targets": 6,
+                        "data": "maLop",
+                        "render": function (data) {
+                            return "<input type='checkbox'  value=" + data + " class='myCheckbox text-center' id='myCheckbox' />"
+                        }
+                    }
+                ],
+                language: {
+                    search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 3%; color:#0984e3"> </i>',
+                    searchPlaceholder: " Tra cứu ...",
+                    emptyTable: "Dữ liệu hiện tại chưa có...",
+                    zeroRecords: "Không tìm thấy dữ liệu...",
+
+                    loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
+                    paginate: {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Tiếp theo",
+                        "previous": "Quay lại"
+                    }
+                },
+                oLanguage: {
+                    "sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
+                    "sZeroRecords": "Nothing found - sorry",
+                    "sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
+                    "sInfoEmpty": "",
+                    "sInfoFiltered": "(filtered from _MAX_ total records)"
+                },
+            })
+
+
+        })
+
+        //insert
+
+
+        //delete
+        $(document).ready(function () {
+            $('#delete-btn').click(function () {
+
+                var listData = [];
+                $('.myCheckbox:checked').each(function () {
+                    var data = $(this).val();
+                    console.log("Giá trị của data khi click vào checkbox: " + data);
+                    listData.push(data);
+                });
+                //var dataNumbers = listData.map(function (str) {
+                //    return parseInt(str);
+                //});
+                console.log(listData)
+
+                if (listData.length === 0) {
+                    toastr.warning('bạn chưa chọn dữ liệu');
+                } else {
+
+                    Delete(listData);
+                    // }
+                }
+
+            });
+            function Delete(ids) {
+                Swal.fire({
+                    title: "Bạn có muốn xóa không ?",
+                    text: "",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Có "
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var requests = ids.map(function (id) {
+                            console.log(id)
+                            return $.ajax({
+                                type: "POST",
+                                url: 'DeleteLop/' + id
+
+                            });
+                        });
+                        $.when.apply($, requests).done(function () {
+                            var responses = arguments;
+                            if (responses.success == true) {
+                                Swal.fire({
+                                    title: "Xóa !",
+                                    text: "Dữ liệu của bạn đã xóa thành công .",
+                                    icon: "success"
+                                });
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 1500);
+                            } else {
+                                for (var i = 0; i < responses.length; i++) {
+                                    var data = responses[i][0];
+                                    if (data.success) {
+                                        Swal.fire({
+                                            title: "Xóa !",
+                                            text: "Dữ liệu của bạn đã xóa thành công .",
+                                            icon: "success"
+                                        });
+                                        setTimeout(function () {
+                                            window.location.reload();
+                                        }, 1500);
+                                    } else {
+                                        alert("error");
+                                    }
+                                }
+                            }
+
+                        });
+                    }
+                });
+            }
+
+        });
+       
+        $(document).ready(function () {
+            $("#quanLyLopHoc").submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData($(this)[0]);
+                console.log(formData);
+                $.ajax({
+                    url: "/QuanLy/ThemMoiLopHoc",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response)
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Thành công !",
+                                text: response.success,
+                                icon: "success"
+                            });
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
+                            console.log(response.success);
+                        }
+                        else if (response.error == "Lớp Học đã tồn tại , vui lòng kiểm tra lại thông tin vừa nhập" || response.error == "Giáo viên này đã có lớp xin vui lòng chọn giáo viên khác") {
+                            Swal.fire({
+                                title: "Lỗi  !",
+                                text: response.error,
+                                icon: "error"
+                            });
+
+                            console.log(response.error);
+                        }
+                        else {
+                            Swal.fire({
+                                title: "Lỗi  !",
+                                text: response.error,
+                                icon: "warning"
+                            });
+
+                            console.log(response.error);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+
+                        console.log(xhr.responseText);
+                    }
+                })
+            })
+        })
+    </script>
+}
