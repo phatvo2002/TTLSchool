@@ -48,7 +48,10 @@
                             <a class="nav-link text-white fs-6" asp-area="" asp-controller="Home" asp-action="Privacy">Giới Thiệu </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white fs-6" >Tuyển Sinh 10 </a>
+                            <a class="nav-link text-white fs-6" >Tin Tức </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fs-6" asp-controller="DangKy" asp-action="Index">Tuyển Sinh 10 </a>
                         </li>
                         <li class="nav-item ">
                             <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tra cứu </a>
@@ -98,6 +101,25 @@
                                             <i class="fa-solid fa-caret-right"></i>
                                             <a href="" class="dropdown-link fs-6 text-decoration-none ">Quản lý Điểm </a>
                                         </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var roles = await UserManager.GetRolesAsync(user!);
+                            if (roles.Contains("Quản Trị"))
+                            {
+
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quản trị Người dùng</a>
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-item border-bottom p-3 menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLyUser" asp-action="Index">Quản Lý Tài Khoản</a>
+                                        </div>
+                                      
                                     </div>
                                 </li>
                             }

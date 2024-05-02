@@ -1,0 +1,225 @@
+﻿@model TTLProject2.Models.HocSinhModel
+@using TTLProject2.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form >
+	<div class='contentpane'>
+		<div class='container'>
+			<div id="dnn_ContentPane">
+				<div class="DnnModule DnnModule-ThacsyOnline DnnModule-484">
+					<a name="484"></a>
+					<div class="etep-1">
+						<div class='container-header p-3'>
+							<h2>
+								<span id="dnn_ctr484_dnnTITLE_titleLabel" class="title">CẬP NHẬT HỒ SƠ THÍ SINH TRƯỜNG TRUNG HỌC PHỔ THÔNG THẠNH LỘC </span>
+							</h2>
+						</div>
+						<div class='container-content'>
+							<div id="dnn_ctr484_ContentPane">
+								<!-- Start_Module_484 --><div id="dnn_ctr484_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
+									<div id="dnn_ctr484_View_pnlContainer">
+
+
+										<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+										<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+										<style>
+											.DKForm {
+												margin: 20px auto;
+												padding: 10px 20px;
+												border: 1px dashed #ddd;
+											}
+
+											.lbl-item {
+												font-size: 11px;
+											}
+
+											.inputdk {
+												display: block;
+												width: 100%;
+												height: calc(2.25rem + 2px);
+												line-height: 1.5;
+												color: #495057;
+												background-color: #fff;
+												background-clip: padding-box;
+												border: 1px solid #ced4da;
+												border-radius: 0.25rem;
+												margin-bottom: 1rem;
+											}
+
+											h2, h3 {
+												font-size: 22px;
+												font-family: Arial, Helvetica, sans-serif;
+												font-weight: bold;
+											}
+
+											.label {
+												font-weight: bold;
+												font-size: 15px;
+											}
+
+											.required {
+												color: red;
+											}
+
+											.ngay {
+												width: 33%;
+												display: inline;
+											}
+
+											.thang {
+												width: 33%;
+												display: inline;
+											}
+
+											.nam {
+												width: 30%;
+												display: inline;
+											}
+										</style>
+										<body>
+											<div id="dnn_ctr484_View_Register_countdown" style="color: red; font-size: 20px"></div>
+											<div id="hide">
+												<div class="DKForm">
+													<div class="text-center" style="display:none">
+														<h4>TRƯỜNG TRUNG HỌC PHỔ THÔNG THẠNH LỘC</h4>
+														<h6>CHỈNH SỬA HỒ SƠ HỌC SINH </h6>
+													</div>
+													<div class="row">
+														<div class="col-lg-12 col-sm-12 col-xs-12">
+															<h3>I. Thông tin cá nhân <span style="font-size: 16px;">(Lưu ý mục đánh dấu <span class="required">(*)</span> là bắt buộc)</span></h3>
+															<hr />
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12">
+															<label asp-for="HoTen" class="label">Họ và tên thí sinh (<span class="required">*</span>)</label>
+															<input asp-for="HoTen" class="form-control" />
+															<span asp-validation-for="HoTen" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12">
+															<label asp-for="MaGioiTinh" class="label">Giới Tính (<span class="required">*</span>)</label>
+															<div class="col-12">
+																<select asp-for="MaGioiTinh" asp-items="Model.DanhSachGioiTinh" class="select2 form-control">
+																	<option value="">Năm</option>
+																</select>
+																<span asp-validation-for="MaGioiTinh" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12">
+															<label asp-for="NgaySinh" class="label">Ngày Tháng Năm Sinh (<span class="required">*</span>)</label>
+															<input asp-for="NgaySinh" class="form-control" type="date" />
+															<span asp-validation-for="NgaySinh" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="SoDienThoai" class="label">Số Điện Thoại  (<span class="required">*</span>)</label>
+															<input asp-for="SoDienThoai" class="form-control"  />
+															<span asp-validation-for="SoDienThoai" class="text-danger"></span>
+														</div>
+
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="DiaChiNha" class="label">Địa Chỉ Thường Trú (<span class="required">*</span>)</label>
+															<input asp-for="DiaChiNha" class="form-control" />
+															<span asp-validation-for="DiaChiNha" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="MaDanToc" class="label">Dân Tộc(<span class="required">*</span>)</label>
+															<div class="col-12">
+																<select asp-for="MaDanToc" asp-items="Model.DanhSachDanToc" class="select2 form-control">
+																	<option value="">Năm</option>
+																</select>
+																<span asp-validation-for="MaDanToc" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="MaDanToc" class="label">Quốc Tịch (<span class="required">*</span>)</label>
+															<div class="col-12">
+																<select asp-for="MaQuocTich" asp-items="Model.DanhSachQuocTich" class="select2 form-control">
+																	<option value="">Năm</option>
+																</select>
+																<span asp-validation-for="MaQuocTich" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-lg-12 col-sm-12 col-xs-12 mt-3">
+															<h3>II. Thông tin phụ huynh <span style="font-size: 16px;">(Lưu ý mục đánh dấu <span class="required">(*)</span> là bắt buộc)</span></h3>
+															<hr />
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="HoTenBo" class="label">Họ Tên Bố  (<span class="required">*</span>)</label>
+															<input asp-for="HoTenBo" class="form-control" />
+															<span asp-validation-for="HoTenBo" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="NgheNghiep1" class="label">Nghề Nghiệp(<span class="required">*</span>)</label>
+															<input asp-for="NgheNghiep1" class="form-control" />
+															<span asp-validation-for="NgheNghiep1" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="SoDienThoaiBo" class="label">Số Điện Thoại(<span class="required">*</span>)</label>
+															<input asp-for="SoDienThoaiBo" class="form-control" />
+															<span asp-validation-for="SoDienThoaiBo" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="HoTenMe" class="label">Họ Tên Mẹ  (<span class="required">*</span>)</label>
+															<input asp-for="HoTenMe" class="form-control" />
+															<span asp-validation-for="HoTenMe" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="NgheNghiep2" class="label">Nghề Nghiệp(<span class="required">*</span>)</label>
+															<input asp-for="NgheNghiep2" class="form-control" />
+															<span asp-validation-for="NgheNghiep2" class="text-danger"></span>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="SoDienThoaiMe" class="label">Số Điện Thoại(<span class="required">*</span>)</label>
+															<input asp-for="SoDienThoaiMe" class="form-control" />
+															<span asp-validation-for="SoDienThoaiMe" class="text-danger"></span>
+														</div>
+														<div class="col-lg-12 col-sm-12 col-xs-12 mt-3">
+															<h3>III. Thông tin Trường Học <span style="font-size: 16px;">(Lưu ý mục đánh dấu <span class="required">(*)</span> là bắt buộc)</span></h3>
+															<hr />
+														</div>
+														<div class="col-md-12 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="TruongHoc1" class="label">Trường Tiểu Học(<span class="required">*</span>)</label>
+															<input asp-for="TruongHoc1" class="form-control" />
+															<span asp-validation-for="TruongHoc1" class="text-danger"></span>
+														</div>
+														<div class="col-md-12 col-sm-12 col-xs-12 mt-2">
+															<label asp-for="TruongHoc2" class="label">Trường Trung Học Cơ Sở (<span class="required">*</span>)</label>
+															<input asp-for="TruongHoc2" class="form-control" />
+															<span asp-validation-for="TruongHoc2" class="text-danger"></span>
+														</div>
+														<div class="col-lg-12 col-sm-12 col-xs-12 mt-3">
+															<h3>IV. Tình Trạng Học Tập <span style="font-size: 16px;">(Lưu ý mục đánh dấu <span class="required">(*)</span> là bắt buộc)</span></h3>
+															<hr />
+														</div>
+														<div class="col-md-6 col-xs-12 mt-2">
+															<label asp-for="MaTrangThai" class="label">Trạng Thái (<span class="required">*</span>)</label>
+															<div class="col-12">
+																<select asp-for="MaTrangThai" asp-items="Model.DanhSachTrangThai" class="select2 form-control">
+																	<option value="">Năm</option>
+																</select>
+																<span asp-validation-for="MaTrangThai" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-md-6 col-xs-12 mt-2">
+															<label asp-for="MaLop" class="label">Lớp Học Hiện Tại (<span class="required">*</span>)</label>
+															<div class="col-12">
+																<select asp-for="MaLop" asp-items="Model.DanhsachLopHoc" class="select2 form-control">
+																	<option value="">Năm</option>
+																</select>
+																<span asp-validation-for="MaLop" class="text-danger"></span>
+															</div>
+														</div>
+												</div>
+											</div>
+										</body>
+									</div>
+								</div><!-- End_Module_484 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

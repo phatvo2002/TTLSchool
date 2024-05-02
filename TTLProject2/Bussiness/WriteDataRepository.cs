@@ -18,30 +18,21 @@ namespace TTLProject2.Bussiness
             _connectionString = setting.Value.ConnectionString;
         }
 
-        public async Task<bool> DeleteGiaoVien(string id)
+       
+        public Task<IEnumerable<HocSinh>> DeleteHocSinh(string maHocSinh)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<LopHoc>> DeleteLopHoc(string maLop)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 DynamicParameters _params = new DynamicParameters();
-                _params.Add("@maLop", id);
-                return await db.ExecuteAsync("delete_lophoc_by_maLopHoc", _params, commandType: CommandType.StoredProcedure) > 0;
+                _params.Add("@maLopHoc", maLop);
+                return await db.QueryAsync<LopHoc>("delete_lophoc_by_maLopHoc", _params, commandType: CommandType.StoredProcedure);
             }
         }
-
-		public Task<IEnumerable<HocSinh>> DeleteHocSinh(string maHocSinh)
-		{
-			throw new NotImplementedException();
-		}
-
-		public async Task<IEnumerable<LopHoc>> DeleteLopHoc(string maLop)
-        {
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-                DynamicParameters _params = new DynamicParameters();
-                _params.Add("@maLopHoc", maLop);
-                return await db.QueryAsync<LopHoc>("delete_lophoc_by_maLopHoc", _params, commandType: CommandType.StoredProcedure) ;
-			}
-		}
 
         public async Task<bool> InsertGiaoVien(GiaoVien giaoVien)
         {
@@ -87,8 +78,8 @@ namespace TTLProject2.Bussiness
                 _params.Add("@truongHoc1", hocSinhModel.TruongHoc1);
                 _params.Add("@truongHoc2", hocSinhModel.MaGioiTinh);
                 _params.Add("@maDanToc", hocSinhModel.MaDanToc);
-				_params.Add("@maGioiTinh", hocSinhModel.MaTrangThai);
-				_params.Add("@maTrangThai", hocSinhModel.MaTrangThai);
+                _params.Add("@maGioiTinh", hocSinhModel.MaTrangThai);
+                _params.Add("@maTrangThai", hocSinhModel.MaTrangThai);
                 _params.Add("@maQuocTich", hocSinhModel.MaQuocTich);
                 _params.Add("@maLop", hocSinhModel.MaLop);
                 var result = await db.ExecuteAsync("Create_hocSinh", _params, commandType: CommandType.StoredProcedure);
@@ -112,5 +103,57 @@ namespace TTLProject2.Bussiness
                 return result > 0;
             }
         }
-    }
+
+       public async  Task<IEnumerable<GiaoVien>> DeleteGiaoVien(string maGiaoVien)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                DynamicParameters _params = new DynamicParameters();
+                _params.Add("@magiaoVien", maGiaoVien);
+                return await db.QueryAsync<GiaoVien>("delete_giaoVien", _params, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<bool> DeleteGv(string magv)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {  
+              return await db.ExecuteAsync("delete_giaoVien", new { MaGiaoVien = magv }, commandType: CommandType.StoredProcedure) > 0;
+				
+			}
+            
+        }
+
+		public async Task<bool> DeleteHs(string mahs)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.ExecuteAsync("delete_hocsinh", new { maHocSinh = mahs }, commandType: CommandType.StoredProcedure) > 0;
+
+			}
+		}
+
+		public async Task<bool> InsertUserRole(UserRoleModel userRoleModel)
+		{
+
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				DynamicParameters _params = new DynamicParameters();
+                _params.Add("@idUser", userRoleModel.UserId);
+                _params.Add("@idRole", userRoleModel.RoleId);
+				var result = await db.ExecuteAsync("regist_phanquyen", _params, commandType: CommandType.StoredProcedure);
+				return result > 0;
+			}
+		}
+
+		public async Task<bool> DeleteUser(string id)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.ExecuteAsync("delete_user_by_id", new { userId = id }, commandType: CommandType.StoredProcedure) > 0;
+
+			}
+		}
+	}
 }
+ 

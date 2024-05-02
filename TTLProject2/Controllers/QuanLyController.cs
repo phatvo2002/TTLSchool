@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Runtime.InteropServices;
 using TTLProject2.Bussines;
 using TTLProject2.Bussiness;
 using TTLProject2.Entities;
@@ -130,9 +131,31 @@ namespace TTLProject2.Controllers
 			return Json(new { data = await _readataRepository.GetHocSinh() });
         }
 
+		[HttpPost]
+		public async Task<IActionResult> DeleteHocSinh(string mahocsinh)
+		{
+			
+				var result = await _writeDataRepository.DeleteHs(mahocsinh);
+				if (result)
+				{
+					ViewBag.Success = "Xóa Thành Công";
+				}
+				else
+				{
+					ViewBag.Error = "Xóa Thất bại";
+				}
+			
+			
+			return Json(new { success = ViewBag.Success, failed = ViewBag.Error });
 
-        // ------------------------Quản Lý Lớp học ------------------------------ 
-        public async Task<IActionResult> QuanLyLopHoc()
+
+		}
+
+		
+
+
+		// ------------------------Quản Lý Lớp học ------------------------------ 
+		public async Task<IActionResult> QuanLyLopHoc()
 		{
             ViewData["Tab"] = "QuanTri";
 			LopHocViewModel model = new LopHocViewModel();
@@ -312,18 +335,34 @@ namespace TTLProject2.Controllers
 					string errorMessage = "";
 					string sucessMessage = "";
 				try {
-					result = await _writeDataRepository.InsertGiaoVien(giaoVien);
-					sucessMessage = "Thêm Giáo Viên Thành Công";
-					errorMessage = "Đã xảy ra lỗi trong quá trình thêm ";
-
-					if (result)
+					if(await _readataRepository.CheckGiaoVienExistByMagiaovien(model.MaGiaoVien))
 					{
-						ViewBag.Success = sucessMessage;
+						errorMessage = "Mã giáo viên đã tồn tại !";
+						result = false;
+						ViewBag.Error = errorMessage;
+					}
+					else if(await _readataRepository.CheckGiaoVienExistbyTenGiaoVien(model.HoTen))
+					{
+						errorMessage = "Tên đã tồn tại trong hệ thống !";
+						result = false;
+						ViewBag.Error =errorMessage;
 					}
 					else
 					{
-						ViewBag.Error = errorMessage;
-					}
+						result = await _writeDataRepository.InsertGiaoVien(giaoVien);
+						sucessMessage = "Thêm Giáo Viên Thành Công";
+						errorMessage = "Đã xảy ra lỗi trong quá trình thêm ";
+
+						if (result)
+						{
+							ViewBag.Success = sucessMessage;
+						}
+						else
+						{
+							ViewBag.Error = errorMessage;
+						}
+					}	
+					
 				}
 				catch(Exception ex)
 				{
@@ -339,6 +378,29 @@ namespace TTLProject2.Controllers
 				ModelState.AddModelError(string.Empty, ex.Message);
 			}
 			return Json(new { success = ViewBag.Success, failed = ViewBag.Error });
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteGv( GiaoVienViewModel giaoVien)
+		{
+			try
+			{
+				var result = await _writeDataRepository!.DeleteGv(giaoVien.MaGiaoVien);
+				if (result)
+				{
+					ViewBag.Success = "Xóa Thành Công";
+				}else
+				{
+					ViewBag.Error = "Xóa Thất bại";
+				}	
+			}
+			catch (Exception ex)
+			{
+				ViewBag.Error = ex.Message;
+			}
+			return Json(new { success = ViewBag.Success, failed = ViewBag.Error });
+			
+
 		}
 	}
 

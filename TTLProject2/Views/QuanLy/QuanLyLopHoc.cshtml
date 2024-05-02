@@ -203,8 +203,8 @@
 
         //delete
         $(document).ready(function () {
-            $('#delete-btn').click(function () {
-
+            $('#delete-btn').click(function (e) {
+                e.preventDefault();
                 var listData = [];
                 $('.myCheckbox:checked').each(function () {
                     var data = $(this).val();
@@ -241,7 +241,7 @@
                             return $.ajax({
                                 type: "POST",
                                 url: 'DeleteLop/' + id
-
+                                
                             });
                         });
                         $.when.apply($, requests).done(function () {
@@ -282,7 +282,7 @@
        
         $(document).ready(function () {
             $("#quanLyLopHoc").submit(function (e) {
-                e.preventDefault();
+               
                 var formData = new FormData($(this)[0]);
                 console.log(formData);
                 $.ajax({

@@ -18,7 +18,35 @@ namespace TTLProject2.Bussiness
             _connectionString = setting.Value.ConnectionString;
         }
 
-        public async Task<bool> CheckHocSinhExistByMahocsinh(string maHocSinh)
+		public async Task<bool> CheckGiaoVienExistByMagiaovien(string magiaovien)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				int result;
+				var _params = new DynamicParameters();
+				_params.Add("@maGiaoVien", magiaovien);
+				_params.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+				var RS = await db.ExecuteAsync("check_giaoVien_exist_by_maGiaoVien ", _params, commandType: CommandType.StoredProcedure);
+				result = _params.Get<Int32>("@Result");
+				return result == 1 ? true : false;
+			}
+		}
+
+		public async Task<bool> CheckGiaoVienExistbyTenGiaoVien(string tengiaovien)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				int result;
+				var _params = new DynamicParameters();
+				_params.Add("@tenGiaoVien", tengiaovien);
+				_params.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+				var RS = await db.ExecuteAsync("check_giaoVien_exist_by_tenGiaoVien ", _params, commandType: CommandType.StoredProcedure);
+				result = _params.Get<Int32>("@Result");
+				return result == 1 ? true : false;
+			}
+		}
+
+		public async Task<bool> CheckHocSinhExistByMahocsinh(string maHocSinh)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -76,7 +104,40 @@ namespace TTLProject2.Bussiness
 				
 		}
 
-		public async Task<IEnumerable<DanToc>> GetDanToc()
+		public async Task<bool> CheckUserExistById(string id)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				int result;
+				var _params = new DynamicParameters();
+				_params.Add("@userId", id);
+				_params.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+				var RS = await db.ExecuteAsync("check_role_exist_by_userid ", _params, commandType: CommandType.StoredProcedure);
+				result = _params.Get<Int32>("@Result");
+				return result == 1 ? true : false;
+			}
+		}
+
+		public async Task<IEnumerable<Role>> GetAllRole()
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+               
+                    return await db.QueryAsync<Role>("getall_Roles", commandType: CommandType.StoredProcedure);
+                
+            }
+        }
+        public async Task<IEnumerable<User>> GetAllUser()
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+
+                return await db.QueryAsync<User>("getall_user", commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
+        public async Task<IEnumerable<DanToc>> GetDanToc()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -123,6 +184,16 @@ namespace TTLProject2.Bussiness
 			using (IDbConnection db = new SqlConnection(_connectionString))
 			{
 				return await db.QueryAsync<HocSinh>("getall_hocSinh", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<HocSinhModel> GetHocSinhByID(string id)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+                var _params = new DynamicParameters();
+                _params.Add("@maHocSinh", id);
+                return await db.QuerySingleOrDefaultAsync<HocSinhModel>("gethocsinh_by_maHocSinh", _params, commandType: CommandType.StoredProcedure);
 			}
 		}
 

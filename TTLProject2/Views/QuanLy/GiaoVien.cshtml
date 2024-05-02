@@ -36,40 +36,47 @@
 							<form  method="post" id="GiaoVienForm" enctype="multipart/form-data">
 								<div class="modal-body">
 									<div class="mb-3">
-										<label for="" class="form-label">Mã Giáo Viên </label>
+										<label for="" class="form-label">Mã Giáo Viên <span class="text-danger">(*)</span> </label>
 										<input type="text" class="form-control" id="" asp-for="MaGiaoVien" placeholder="Vd : GV...">
-
+										<span asp-validation-for="MaGiaoVien" class="text-danger"></span>
 									</div>
 									<div class="row">
 										<div class="mb-3 col-md-4">
-											<label for="" class="form-label">Tên Giáo Viên </label>
+											<label for="" class="form-label">Tên Giáo Viên <span class="text-danger">(*)</span></label>
 											<input type="text" class="form-control" id="" asp-for="HoTen" placeholder="VD : Võ Đăng Phát">
+											<span asp-validation-for="HoTen" class="text-danger"></span>
 										</div>
 										<div class="mb-3 col-md-4">
-											<label for="" class="form-label">Giới Tính  </label>
+											<label for="" class="form-label">Giới Tính  <span class="text-danger">(*)</span></label>
 											<select class="form-select" aria-label="Default select example" asp-for="MaGioiTinh" asp-items="Model.DanhSachGioiTinh" >
 												<option hidden disabled selected>Giới tính </option>
+											
 
 											</select>
+											<span asp-validation-for="MaGioiTinh" class="text-danger"></span>
 										</div>
 										<div class="mb-3  col-md-4">
-											<label for="" class="form-label">Ngày Sinh  </label>
+											<label for="" class="form-label">Ngày Sinh  <span class="text-danger">(*)</span></label>
 											<input type="date" class="form-control" id="" asp-for="NgaySinh" placeholder="Ngày Sinh">
+											<span asp-validation-for="NgaySinh" class="text-danger"></span>
 										</div>
 									</div>
 
 									<div class="mb-3">
-										<label for="" class="form-label">Số CCCD</label>
+										<label for="" class="form-label">Số CCCD <span class="text-danger">(*)</span></label>
 										<input type="text" class="form-control" id="" asp-for="CCCD" placeholder="VD : 079....">
+									    <span asp-validation-for="CCCD" class="text-danger"></span>
 									</div>
 									<div class="row">
 										<div class="mb-3 col-md-4">
-											<label for="" class="form-label">Email</label>
+											<label for="" class="form-label">Email <span class="text-danger">(*)</span></label>
 											<input type="email" class="form-control" id="" asp-for="Email" placeholder="VD : ...gmail.com">
+											<span asp-validation-for="Email" class="text-danger"></span>
 										</div>
 										<div class="mb-3 col-md-4">
-											<label for="" class="form-label">Số Điện Thoại </label>
+											<label for="" class="form-label">Số Điện Thoại <span class="text-danger">(*)</span></label>
 											<input type="text" class="form-control" id="" asp-for="DienThoai" placeholder="VD : 09...">
+											<span asp-validation-for="DienThoai" class="text-danger"></span>
 										</div>
 										<div class="mb-3 col-md-4">
 											<label for="" class="form-label">Tôn Giáo </label>
@@ -86,12 +93,14 @@
 										<input type="text" class="form-control" asp-for="QueQuan" id="" placeholder="VD :TPHCM">
 									</div>
 									<div class="mb-3">
-										<label for="" class="form-label">Số Bảo Hiểm Xã hội</label>
+										<label for="" class="form-label">Số Bảo Hiểm Xã hội <span class="text-danger">(*)</span></label>
 										<input type="text" class="form-control" id="" asp-for="SoBaoHiemXaHoi" placeholder="">
+										<span asp-validation-for="SoBaoHiemXaHoi" class="text-danger"></span>
 									</div>
 									<div class="mb-3">
-										<label for="" class="form-label">Hình Ảnh </label>
+										<label for="" class="form-label">Hình Ảnh <span class="text-danger">(*)</span> </label>
 										<input type="file" class="form-control" id="" asp-for="HinhAnh" placeholder="">
+										<span asp-validation-for="HinhAnh" class="text-danger"></span>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
@@ -105,14 +114,12 @@
 											<label for="" class="form-label">Trạng Thái</label>
 											<select class="form-select" aria-label="Default select example" asp-for="MaTrangThai" asp-items="Model.DanhSachTrangThai">
 												<option hidden disabled selected>Trạng Thái </option>
-
 											</select>
 										</div>
 										<div class="col-md-12 mt-3">
 											<label for="" class="form-label">Môn Dạy Chính </label>
 											<select class="form-select" aria-label="Default select example" asp-for="MaMonHoc" asp-items="Model.DanhSachMonHoc" >
 												<option selected>Môn Dạy Chính</option>
-
 											</select>
 										</div>
 									</div>
@@ -168,6 +175,7 @@
 
 <link rel="stylesheet" href="~/css/style.css" />
 <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />
 	<script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
@@ -175,194 +183,7 @@
 	<script src="~/lib/moment/moment.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-	<script>
-		$(document).ready(function () {
-			$('#giaovientable').dataTable({
-				"bInfo": false,
-				"responsive": false,
-				"autoWidth": false,
-				"ajax": {
-					"type": "GET",
-					"url": "GetGiaoVienList/",
-					"contentType": "application/json",
-					"datatype": "json",
-					"dataSrc": function (json) {
-						console.log(json.data)
-						return json.data;
-					},
-
-				}, 
-				"columnDefs": [
-					{ "data": "maGiaoVien", "className": "text-center font-size-15", "orderable": false, "targets": 0 ,
-						"render": function (data, type, row, meta) {
-							return `<a style="font-family:'Times New Roman';text-decoration:none;"  href="">${data}</a>`;
-						}
-					},
-					{ "data": "hoTen", "className": "text-center font-size-15", "orderable": false, "targets": 1 ,
-						"render": function (data, type, row, meta) {
-							return `<a style="font-family:'Times New Roman';text-decoration:none;" href="" >${data}</a>`;
-						}
-					},
-					{
-						"data": "ngaySinh", "className": "text-center font-size-15", "orderable": false, "targets": 2, "render": function (data, type, row) {
-
-							if (type === "display") {
-
-								var ngay = new Date(data);
-								return ngay.getDate() + '/' + (ngay.getMonth() + 1) + '/' + ngay.getFullYear();
-							}
-
-							return data;
-						}
-					},
-					{ "data": "dienThoai", "className": "text-center font-size-15", "orderable": false, "targets": 3 },
-					{ "data": "email", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
-					{ "data": "maMonHoc", "className": "text-center font-size-15", "orderable": false, "targets": 5 ,
-						"render": function (data) {
-							if(data == 1)
-							   return "<span>Toán</span>"
-							if(data == 2)
-							   return "<span>Ngữ văn</span>"
-							if(data == 3)
-							   return "<span>Ngoại Ngữ</span>"
-							if (data == 4)
-								return "<span>Sinh Học</span>"
-							if (data == 5)
-								return "<span>Lịch Sử</span>"
-							if (data == 6)
-								return "<span>Địa Lý</span>"
-							if (data == 7)
-								return "<span>Hóa Học</span>"
-							if (data == 8)
-								return "<span>GDCD</span>"
-							if (data == 9)
-								return "<span>Công Nghệ</span>"
-							if (data == 10)
-								return "<span>Tin Học</span>"
-							if (data == 11)
-								return "<span>Thể Dục</span>"
-
-						}
-					},
-					{ "data": "maTrangThai", "className": "text-center font-size-15", "orderable": false, "targets": 6,
-						"render": function (data) {
-							if(data == 6 )
-								return "<span class='badge rounded-pill bg-success'  >Đang Dạy</span>";
-							if (data == 7)
-								return "<span class='adge rounded-pill bg-warning text-dark' >Nghỉ thai sản</span>";
-							if (data == 8)
-								return "<span class='badge rounded-pill bg-danger'  >Đang Dạy</span>";
-							if (data == 1)
-								return "<span class='badge rounded-pill bg-success'  >Đang Học</span>";
-						}
-					},
-					{
-						"targets": 7,
-						"data": "maGiaoVien",
-						"render": function (data) {
-							return "<input type='checkbox'  value=" + data + " class='myCheckbox' id='myCheckbox' />"
-						}
-					}
-				],
-				language: {
-					search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 2%; color:#0984e3"> </i>',
-					searchPlaceholder: " Tra cứu ...",
-					emptyTable: "Dữ liệu hiện tại chưa có...",
-					zeroRecords: "Không tìm thấy dữ liệu...",
-
-					loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
-					paginate: {
-						"first": "First",
-						"last": "Last",
-						"next": "Tiếp theo",
-						"previous": "Quay lại"
-					}
-				},
-				oLanguage: {
-					"sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
-					"sZeroRecords": "Nothing found - sorry",
-					"sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
-					"sInfoEmpty": "",
-					"sInfoFiltered": "(filtered from _MAX_ total records)"
-				},
-				select: {
-					rows: {
-						_: '(đã chọn %d dòng)',
-						0: '',
-						1: '(đã chọn 1 dòng)'
-					}
-				},
-				select: {
-					style: 'multis'
-				},
-				order: [],//no specific initial ordering,
-				initComplete: function (settings, json) {
-					dataTable.buttons().container().appendTo($('.dataTables_filter', dataTable.table().container()));
-					$('.icon').each(function () {
-						var div = $(this).find('span.d-none').first();
-						if (div.length == 1)
-							$(this).tooltip({ container: 'body', title: div.text() });
-						else
-							$(this).tooltip({ container: 'body', title: $(this).text() });
-					});
-					$('.table-page')//specified above in $.fn.dataTable.defaults
-						.append($('#datatable_info'))
-						.end();
-				}
-			})
-		})
-
-		$(document).ready(function () {
-			$("#GiaoVienForm").submit(function (e) {
-				e.preventDefault();
-				var formData = new FormData($(this)[0]);
-				console.log(formData);
-				$.ajax({
-					url: "InsertGiaoVien/",
-					type: "POST",
-					data: formData,
-					contentType: false,
-					processData: false,
-					success: function (response) {
-						console.log(response)
-						if (response.success) {
-							Swal.fire({
-								title: "Thành công !",
-								text: response.success,
-								icon: "success"
-							});
-							setTimeout(function () {
-								window.location.reload();
-							}, 1500);
-							console.log(response.success);
-						}
-
-						else if (response.error) {
-							Swal.fire({
-								title: "Lỗi  !",
-								text: response.error,
-								icon: "error"
-							});
-
-							console.log(response.error);
-						}
-						else {
-							Swal.fire({
-								title: "Lỗi  !",
-								text: "Bạn chưa nhập đầy đủ thông tin  ",
-								icon: "error"
-							});
-
-							console.log(response.error);
-						}
-					},
-					error: function (xhr, status, error) {
-
-						console.log(xhr.responseText);
-					}
-				})
-			})
-		})
-	</script>
+	<script type="text/javascript" src="~/js/quantri/giaovien.js"></script>
 }

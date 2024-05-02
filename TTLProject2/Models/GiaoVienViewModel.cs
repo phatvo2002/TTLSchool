@@ -10,7 +10,9 @@ namespace TTLProject2.Models
 		[Display(Name = "MaGiaoVien")]
 		public string? MaGiaoVien { get; set; }
 
-        public int MaGioiTinh { get; set; }
+		[Required(ErrorMessage = "Bạn chưa chọn giới tính")]
+		[Display(Name = "MaGioiTinh")]
+		public int MaGioiTinh { get; set; }
 
         public int MaTonGiao { get; set; }
 
@@ -33,7 +35,6 @@ namespace TTLProject2.Models
 		public string? CCCD { get; set; }
 
         [Required(ErrorMessage ="Bạn Chua nhập Email ")]
-		[RegularExpression(@"^(.+)@(\S+)}$", ErrorMessage = "Email Phải đúng định dạng")]
 		[Display(Name = "Email")]
 		public string? Email { get; set; }
 

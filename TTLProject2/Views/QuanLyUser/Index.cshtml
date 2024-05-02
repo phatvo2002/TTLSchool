@@ -1,0 +1,274 @@
+﻿@model TTLProject2.Models.UserRoleModel
+@*
+    
+*@
+@{
+    ViewData["Title"] = "Quản Lý Tài Khoản";
+}
+
+<div class='contentpane'>
+	<div class='container-fluid mt-5'>
+		<div id="dnn_ContentPane">
+			<div class="DnnModule DnnModule-ThacsyOnline DnnModule-496">
+				<div class="etep-3">
+					<h2>
+						<span id="dnn_ctr496_dnnTITLE_titleLabel" class="title">QUẢN LÝ NGƯỜI DÙNG </span>
+					</h2>
+
+					<p>Lưu ý : Bạn click vào ô chứa mã user để có thể đến trang chỉnh sửa người dùng</p>
+					<img src="~/asset/images/capture.png" style="width:30%;"/>
+					<div class='container-content' style="position:relative">
+					
+						<!--Button Modal -->
+						<button type="submit" class="btn btn-danger" id="delete-btn" style="position:absolute;left:73%;top:4%;border-radius:50px;z-index:1000;">
+							<i class="fa-solid fa-trash"></i>
+							Xóa
+						</button>
+						<button type="submit" class="btn text-white " style="position:absolute;left:80%;top:4%;border-radius:50px;z-index:1000;background-color:#3c8dbc;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							<i class="fa-regular fa-envelope"></i>
+							Phân Quyền
+						</button>
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Phân Quyền Người Dùng</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<form id="submitRole">
+									<div class="modal-body">
+										<p>Hướng Dẫn Sử dụng :</p>
+										<p>b1 : Chọn tài khoản người dùng </p>
+										<p>b2 : Chọn vai trò tương ứng với người dùng trong hệ thống </p>
+										<p>b3 : Click nút xác nhận </p>
+										<div class="row mt-3">
+											<div class="col-12">
+												<label for="" class="form-label">Email người dùng <span class="text-danger">(*)</span></label>
+												<select class="form-select" aria-label="Default select example" asp-for="UserId" asp-items="Model.DanhSachUser">
+													<option selected>-- Chọn Người dùng để phân quyền--</option>
+
+												</select>
+											    <span asp-validation-for="UserId" class="text-danger"></span>
+											</div>
+											<div class="col-12 mt-4">
+												<label for="" class="form-label">Tên vai trò <span class="text-danger">(*)</span></label>
+												<select class="form-select" aria-label="Default select example" asp-for="RoleId" asp-items="Model.DanhSachVaiTro">
+													<option selected>-- Chọn Vai Trò Để Phân Quyền Người Dùng--</option>
+
+												</select>
+												
+												@* <span asp-validation-for="HoTen" class="text-danger"></span> *@
+											</div>
+											
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Xác Nhận</button>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!--Button Modal-->
+						<div id="dnn_ctr496_ContentPane">
+							<!-- Start_Module_484 --><div id="dnn_ctr496_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
+								<div id="dnn_ctr496_View_pnlContainer">
+									<style>
+										.DKForm {
+											margin: 20px auto;
+											padding: 10px 20px;
+											border: 1px dashed #ddd;
+										}
+									</style>
+									<body>
+										<div id="">
+											<div class="DKForm">
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+														<table id="userTable" class="table table-striped table-bordered" style="min-width: max-content;">
+															<thead class="text-secondary-m2 bg-tbl-header ">
+																<tr class="text-white">
+																	<th class="border-0">Mã User</th>
+																	<th class="border-0">Tên </th>
+																	<th class="border-0">Tên Đệm</th>
+																	<th class="border-0">Tên User </th>
+																	<th class="border-0">Email</th>
+																	<th class="border-0 tbl-column-130"><i class="fa fa-cog"></i></th>
+																</tr>
+															</thead>
+															<tbody></tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</body>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" href="~/css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+    <script src="~/js/datatables.js"></script>
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#userTable").dataTable({
+				"bInfo": false,
+				"responsive": false,
+				"autoWidth": false,
+				"ajax": {
+					"type": "GET",
+					"url": "QuanLyUser/UserGetList/",
+					"contentType": "application/json",
+					"datatype": "json",
+					"dataSrc": function (json) {
+						console.log(json.data)
+						return json.data;
+					},
+				},
+				"columnDefs": [
+					{ "data": "id", "className": "text-center font-size-15", "orderable": false, "targets": 0 ,
+						"render": function (data, type, row, meta) {
+							return `<a style="font-family:'Times New Roman';text-decoration:none;" href="/ChinhSuaThongTin/Index/${row.maHocSinh}">${data}</a>`;
+						}
+					},
+					{ "data": "firstName", "className": "text-center font-size-15", "orderable": false, "targets": 1 },
+					{ "data": "className", "className": "text-center font-size-15", "orderable": false, "targets": 2 },
+					{ "data": "userName", "className": "text-center font-size-15", "orderable": false, "targets": 3 },
+					{ "data": "email", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
+					{
+						"targets": 5,
+						"data": "id",
+						"render": function (data) {
+							return `<a class='btn btn-danger' onclick='deleteUser("${data}")'> Xóa</a>`
+
+						}
+					}
+				],
+				language: {
+					search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 3%; color:#0984e3"> </i>',
+					searchPlaceholder: " Tra cứu ...",
+					emptyTable: "Dữ liệu hiện tại chưa có...",
+					zeroRecords: "Không tìm thấy dữ liệu...",
+
+					loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
+					paginate: {
+						"first": "First",
+						"last": "Last",
+						"next": "Tiếp theo",
+						"previous": "Quay lại"
+					}
+				},
+				oLanguage: {
+					"sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
+					"sZeroRecords": "Nothing found - sorry",
+					"sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
+					"sInfoEmpty": "",
+					"sInfoFiltered": "(filtered from _MAX_ total records)"
+				},
+			})
+		})
+
+		$(document).ready(function(){
+			$("#submitRole").submit(function(e){
+				e.preventDefault();
+				var formData = new FormData($(this)[0]);
+				console.log(formData);
+				$.ajax({
+					url: "QuanLyUser/PhanQuyen",
+					type: "POST",
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function (response) {
+						console.log(response)
+						if (response.success) {
+							Swal.fire({
+								title: "Thành công !",
+								text: response.success,
+								icon: "success"
+							});
+							setTimeout(function () {
+								window.location.reload();
+							}, 1500);
+							console.log(response.success);
+						}
+						else if (response.error != "") {
+							Swal.fire({
+								title: "Lỗi !",
+								text: response.error,
+								icon: "error"
+							});
+							
+							console.log(response.error);
+						}else
+				        {
+							Swal.fire({
+								title: "Cảnh Báo !",
+								text: "Bạn Chưa nhập đầy đủ thông tin",
+								icon: "warning"
+							});
+				        }
+
+					},
+					error: function (xhr, status, error) {
+
+						console.log(xhr.responseText);
+					}
+				})
+			})
+		})
+
+
+		function deleteUser(id) {
+			Swal.fire({
+				title: "Bạn có muốn xóa không",
+				text: "",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Có"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$.ajax({
+						url: "QuanLyUser/DeleteUser/" + id,
+						type: "POST",
+						contentType: false,
+						processData: false,
+						success: function (response) {
+							if (respone.success) {
+								Swal.fire({
+									title: "Deleted!",
+									text: response.success,
+									icon: "success"
+								});
+								console.log(response)
+							}
+							else {
+								Swal.fire({
+									title: "Lỗi",
+									text: response.failed,
+									icon: "error"
+								});
+							}
+						}
+					})
+				}
+			});
+		}
+	</script>
+}

@@ -31,6 +31,10 @@ namespace TTLProject2.Bussiness
 
         Task<IEnumerable<LopHoc>> GetLopHoc();
 
+        Task<IEnumerable<Role>> GetAllRole();
+
+        Task<IEnumerable<User>> GetAllUser();
+
         Task<bool> CheckLopHocExist(string maLop, string tenLop);
 
         Task<bool> CheckLopHoExistByMagiaovien (string magiaovien);
@@ -38,6 +42,14 @@ namespace TTLProject2.Bussiness
         Task<bool> CheckHocSinhExistByMahocsinh(string maHocSinh);
 
         Task<bool> CheckHocSinhExistByTenhocsinh(string tenHocSinh);
+
+        Task<bool> CheckGiaoVienExistByMagiaovien(string magiaovien);
+
+        Task<bool> CheckGiaoVienExistbyTenGiaoVien(string tengiaovien);
+
+        Task<bool> CheckUserExistById(string id);
+
+        Task<HocSinhModel> GetHocSinhByID(string id);
 	}
 }
 
