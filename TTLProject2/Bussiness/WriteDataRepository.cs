@@ -28,9 +28,8 @@ namespace TTLProject2.Bussiness
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                DynamicParameters _params = new DynamicParameters();
-                _params.Add("@maLopHoc", maLop);
-                return await db.QueryAsync<LopHoc>("delete_lophoc_by_maLopHoc", _params, commandType: CommandType.StoredProcedure);
+                
+                return await db.QueryAsync<LopHoc>("delete_lophoc_by_maLopHoc", new {Malop = maLop }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -154,6 +153,55 @@ namespace TTLProject2.Bussiness
 
 			}
 		}
-	}
+
+        public async Task<bool> InsertThiSinh(DangKiViewModel dangkiModel)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                DynamicParameters _params = new DynamicParameters();
+                _params.Add("@maNienKhoa", dangkiModel.MaNienKhoa);
+                _params.Add("@maGioiTinh", dangkiModel.MaGioiTinh);
+                _params.Add("@maDanToc", dangkiModel.MaDanToc);
+                _params.Add("@maTonGiao", dangkiModel.MaTonGiao);
+                _params.Add("@hoten", dangkiModel.HoTen);
+                _params.Add("@ho", dangkiModel.Ho);
+                _params.Add("@tenDem", dangkiModel.TenDem);
+                _params.Add("@ten", dangkiModel.Ten);
+                _params.Add("@ngaySinh", dangkiModel.NgaySinh);
+                _params.Add("@noiSinh", dangkiModel.NoiSinh);
+                _params.Add("@truongThcs", dangkiModel.TruongThcs);
+                _params.Add("@namTotNghiep", dangkiModel.NamTotNghiep);
+                _params.Add("@soDienThoai", dangkiModel.SoDienThoai);
+                _params.Add("@diemTbm6", dangkiModel.DiemTb6);
+                _params.Add("@hanhKiem6", dangkiModel.HanhKiem6);
+                _params.Add("@hocLuc6", dangkiModel.HocLuc6);
+                _params.Add("@diemTbm7", dangkiModel.DiemTb7);
+                _params.Add("@hanhKiem7", dangkiModel.HanhKiem7);
+                _params.Add("@hocLuc7", dangkiModel.HocLuc7);
+                _params.Add("@diemTbm8", dangkiModel.DiemTb8);
+                _params.Add("@hanhKiem8", dangkiModel.HanhKiem8);
+                _params.Add("@hocLuc8", dangkiModel.HocLuc8);
+                _params.Add("@diemTbm9", dangkiModel.DiemTb9);
+                _params.Add("@hanhKiem9", dangkiModel.HanhKiem9);
+                _params.Add("@hocLuc9", dangkiModel.HocLuc9);
+                _params.Add("@hoTenBo", dangkiModel.HoTenBo);
+                _params.Add("@ngheNghiepBo", dangkiModel.NgheNghiepBo);
+                _params.Add("@soDienThoaiBo", dangkiModel.SoDienThoaiBo);
+                _params.Add("@hoTenMe", dangkiModel.HoTenMe);
+                _params.Add("@ngheNghiepMe", dangkiModel.NgheNghiepMe);
+                _params.Add("@soDienThoaiMe", dangkiModel.SoDienThoaiMe);
+                _params.Add("@diaChiThuongTru", dangkiModel.DiaChiThuongTru);
+                _params.Add("@diaChiHienTai", dangkiModel.DiaChiHienTai);
+                _params.Add("@diemThiTsToan", dangkiModel.DiemThiTsToan);
+                _params.Add("@diemThiTsNguVan", dangkiModel.DiemThiTsNguVan);
+                _params.Add("@diemThiTsTiengAnh", dangkiModel.DiemThiTsTiengAnh);
+                _params.Add("@tongDiem", dangkiModel.TongDiem);
+                _params.Add("@diaChiNhan", dangkiModel.DiaChiNhan);
+                _params.Add("@hinhAnh", dangkiModel.HinhAnh);
+                var result = await db.ExecuteAsync("regist_ThiSinh", _params, commandType: CommandType.StoredProcedure);
+                return result > 0;
+            }
+        }
+    }
 }
  

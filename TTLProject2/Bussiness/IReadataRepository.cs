@@ -47,6 +47,8 @@ namespace TTLProject2.Bussiness
 
         Task<bool> CheckGiaoVienExistbyTenGiaoVien(string tengiaovien);
 
+        Task<bool> CheckGiaoVienExistInLop(string magiaovien);
+
         Task<bool> CheckUserExistById(string id);
 
         Task<HocSinhModel> GetHocSinhByID(string id);

@@ -135,6 +135,7 @@ namespace TTLProject2.Controllers
 		public async Task<IActionResult> DeleteHocSinh(string mahocsinh)
 		{
 			
+			
 				var result = await _writeDataRepository.DeleteHs(mahocsinh);
 				if (result)
 				{
@@ -381,23 +382,30 @@ namespace TTLProject2.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> DeleteGv( GiaoVienViewModel giaoVien)
+		public async Task<IActionResult> DeleteGv( string magiaoVien)
 		{
-			try
-			{
-				var result = await _writeDataRepository!.DeleteGv(giaoVien.MaGiaoVien);
-				if (result)
+			
+				if (await _readataRepository.CheckGiaoVienExistInLop(magiaoVien))
 				{
-					ViewBag.Success = "Xóa Thành Công";
-				}else
-				{
-					ViewBag.Error = "Xóa Thất bại";
-				}	
-			}
-			catch (Exception ex)
+					ViewBag.Error = "Giáo viên hiện còn đang có lớp , không thể xóa";
+				}
+				else
 			{
-				ViewBag.Error = ex.Message;
-			}
+				ViewBag.Success = "Có thể xóa ";
+			}	
+				//else
+				//{
+				//	//var result = await _writeDataRepository.DeleteGv(magiaoVien);
+				//	//if (result)
+				//	//{
+				//	//	ViewBag.Success = "Xóa Thành Công";
+				//	//}
+				//	//else
+				//	//{
+				//	//	ViewBag.Error = "Xóa Thất bại";
+				//	//}
+				//}	
+			
 			return Json(new { success = ViewBag.Success, failed = ViewBag.Error });
 			
 

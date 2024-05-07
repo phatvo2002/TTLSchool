@@ -14,6 +14,8 @@ namespace TTLProject2.Bussiness
 
         Task<bool> InsertLopHoc(LopHocViewModel lopHocModel);
 
+        Task<bool> InsertThiSinh(DangKiViewModel dangkiModel);
+
         Task<IEnumerable<LopHoc>> DeleteLopHoc(string maLop);
 
 		Task<IEnumerable<HocSinh>> DeleteHocSinh(string maHocSinh);

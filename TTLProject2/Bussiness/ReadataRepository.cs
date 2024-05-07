@@ -46,6 +46,20 @@ namespace TTLProject2.Bussiness
 			}
 		}
 
+		public async Task<bool> CheckGiaoVienExistInLop(string magiaovien)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				int result;
+				var _params = new DynamicParameters();
+				_params.Add("@maGiaoVien", magiaovien);
+				_params.Add("@Result", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+				var RS = await db.ExecuteAsync("check_giaovien_exist_in_lophoc ", _params, commandType: CommandType.StoredProcedure);
+				result = _params.Get<Int32>("@Result");
+				return result == 1 ? true : false;
+			}
+		}
+
 		public async Task<bool> CheckHocSinhExistByMahocsinh(string maHocSinh)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))

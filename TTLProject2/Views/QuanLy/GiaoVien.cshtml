@@ -185,5 +185,149 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-	<script type="text/javascript" src="~/js/quantri/giaovien.js"></script>
+	
+
+	<script type="text/javascript">
+		
+		$(document).ready(function () {
+			$('#giaovientable').dataTable({
+				"bInfo": false,
+				"responsive": false,
+				"autoWidth": false,
+				"ajax": {
+					"type": "GET",
+					"url": "GetGiaoVienList/",
+					"contentType": "application/json",
+					"datatype": "json",
+					"dataSrc": function (json) {
+						console.log(json.data)
+						return json.data;
+					},
+
+				},
+				"columnDefs": [
+					{
+						"data": "maGiaoVien", "className": "text-center font-size-15", "orderable": false, targets: 0,
+						"render": function (data, type, row, meta) {
+							return `<a style="font-family:'Times New Roman';text-decoration:none;"  href="">${data}</a>`;
+						}
+					},
+					{
+						"data": "hoTen", "className": "text-center font-size-15", "orderable": false, targets: 1,
+						"render": function (data, type, row, meta) {
+							return `<a style="font-family:'Times New Roman';text-decoration:none;" href="" >${data}</a>`;
+						}
+					},
+					{
+						"data": "ngaySinh", "className": "text-center font-size-15", targets: 2, "orderable": false, "render": function (data, type, row) {
+
+							if (type === "display") {
+
+								var ngay = new Date(data);
+								return ngay.getDate() + '/' + (ngay.getMonth() + 1) + '/' + ngay.getFullYear();
+							}
+
+							return data;
+						}
+					},
+					{ "data": "dienThoai", "className": "text-center font-size-15", "orderable": false, targets: 3 },
+					{ "data": "email", "className": "text-center font-size-15", "orderable": false, targets: 4 },
+					{
+						"data": "maMonHoc", "className": "text-center font-size-15", "orderable": false,
+						targets: 5,
+						"render": function (data) {
+							if (data == 1)
+								return "<span>Toán</span>"
+							if (data == 2)
+								return "<span>Ngữ văn</span>"
+							if (data == 3)
+								return "<span>Ngoại Ngữ</span>"
+							if (data == 4)
+								return "<span>Sinh Học</span>"
+							if (data == 5)
+								return "<span>Lịch Sử</span>"
+							if (data == 6)
+								return "<span>Địa Lý</span>"
+							if (data == 7)
+								return "<span>Hóa Học</span>"
+							if (data == 8)
+								return "<span>GDCD</span>"
+							if (data == 9)
+								return "<span>Công Nghệ</span>"
+							if (data == 10)
+								return "<span>Tin Học</span>"
+							if (data == 11)
+								return "<span>Thể Dục</span>"
+
+						}
+					},
+					{
+
+						"data": "maTrangThai", "className": "text-center font-size-15", "orderable": false,
+						targets: 6,
+						"render": function (data) {
+							if (data == 6)
+								return "<span class='badge rounded-pill bg-success'  >Đang Dạy</span>";
+							if (data == 7)
+								return "<span class='adge rounded-pill bg-warning text-dark' >Nghỉ thai sản</span>";
+							if (data == 8)
+								return "<span class='badge rounded-pill bg-danger'  >Đang Dạy</span>";
+							if (data == 1)
+								return "<span class='badge rounded-pill bg-success'  >Đang Học</span>";
+						}
+					},
+					{
+
+						"data": null,
+						"targets": 7,
+						"render": function (row) {
+							return `<form class='text-danger text-center fs-4 ml-3' id='xoaGiaoVien' > <input type='hidden' id='maGiaoVienItem' value=${row.maGiaoVien}> <input type='submit' value='xóa'/></form>`
+						}
+					}
+				],
+				language: {
+					search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 2%; color:#0984e3"> </i>',
+					searchPlaceholder: " Tra cứu ...",
+					emptyTable: "Dữ liệu hiện tại chưa có...",
+					zeroRecords: "Không tìm thấy dữ liệu...",
+
+					loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
+					paginate: {
+						"first": "First",
+						"last": "Last",
+						"next": "Tiếp theo",
+						"previous": "Quay lại"
+					}
+				},
+				oLanguage: {
+					"sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
+					"sZeroRecords": "Nothing found - sorry",
+					"sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
+					"sInfoEmpty": "",
+					"sInfoFiltered": "(filtered from _MAX_ total records)"
+				},
+				select: {
+					rows: {
+						_: '(đã chọn %d dòng)',
+						0: '',
+						1: '(đã chọn 1 dòng)'
+					}
+				},
+				select: {
+					style: 'multis'
+				},
+				order: [],//no specific initial ordering,
+
+			})
+		})
+
+		$(document).ready(function(){
+			$("#xoaGiaoVien").submit(function(e){
+				e.preventDefault()
+
+				var maGiaoVien = $("#maGiaoVienItem").val()
+
+			})
+		})
+	</script>
 }

@@ -57,3 +57,19 @@ body {
     color:black;
     text-decoration:auto;
 }
+
+.input_style {
+    border: none;
+    outline: none;
+    border-bottom: 2px dotted black;
+}
+.register_layout 
+{
+    display:flex;
+    
+}
+.table_style ,th ,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}

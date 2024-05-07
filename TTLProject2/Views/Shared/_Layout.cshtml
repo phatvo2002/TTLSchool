@@ -48,7 +48,15 @@
                             <a class="nav-link text-white fs-6" asp-area="" asp-controller="Home" asp-action="Privacy">Giới Thiệu </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white fs-6" >Tin Tức </a>
+                            <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tin Tức</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-item border-bottom p-3 menu-list">
+                                    <i class="fa-solid fa-caret-right"></i>
+                                    <a asp-controller="QuanLyTinTuc" asp-action="TinTucNhaTruong" class="dropdown-link fs-6 text-decoration-none ">Tin Tức Nhà Trường</a>
+                                </div>
+                               
+
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white fs-6" asp-controller="DangKy" asp-action="Index">Tuyển Sinh 10 </a>
