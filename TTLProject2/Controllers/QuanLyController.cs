@@ -389,23 +389,20 @@ namespace TTLProject2.Controllers
 				{
 					ViewBag.Error = "Giáo viên hiện còn đang có lớp , không thể xóa";
 				}
+				
 				else
-			{
-				ViewBag.Success = "Có thể xóa ";
-			}	
-				//else
-				//{
-				//	//var result = await _writeDataRepository.DeleteGv(magiaoVien);
-				//	//if (result)
-				//	//{
-				//	//	ViewBag.Success = "Xóa Thành Công";
-				//	//}
-				//	//else
-				//	//{
-				//	//	ViewBag.Error = "Xóa Thất bại";
-				//	//}
-				//}	
-			
+			    {
+				var result = await _writeDataRepository.DeleteGv(magiaoVien);
+				if (result)
+				{
+					ViewBag.Success = "Xóa Thành Công";
+				}
+				else
+				{
+					ViewBag.Error = "Xóa Thất bại";
+				}
+		       	}
+
 			return Json(new { success = ViewBag.Success, failed = ViewBag.Error });
 			
 

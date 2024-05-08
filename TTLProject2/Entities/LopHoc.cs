@@ -16,6 +16,8 @@
 
         public int SiSo {  get; set; }
 
+        public int SoLuong { get; set; }
+
         public string? HocNgoaiNgu { get; set; }
 
         public string? TenNienKhoa { get; set; }

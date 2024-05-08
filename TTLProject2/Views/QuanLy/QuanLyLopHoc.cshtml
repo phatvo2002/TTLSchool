@@ -12,7 +12,7 @@
 <!--Datatable-->
 <div id="dnn_ctr496_ContentPane" style="position:relative">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:76%;top:4%;z-index:1000;border-radius:50px;">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:80%;top:4%;z-index:1000;border-radius:50px;">
         <i class="fa-solid fa-plus"></i>
         Thêm Mới 
     </button>
@@ -82,13 +82,9 @@
         </div>
     </div>
     <!--End modal-->
-    <button type="button" class="btn btn-danger" id="delete-btn" style="position:absolute;left:86%;top:4%;z-index:1000;border-radius:50px;">
+    <button type="button" class="btn btn-danger" id="delete-btn" style="position:absolute;left:90%;top:4%;z-index:1000;border-radius:50px;">
         <i class="fa-solid fa-trash"></i>
         Xóa
-    </button>
-    <button type="button" class="btn btn-primary" style="position:absolute;left:92%;top:4%;z-index:1000;border-radius:50px;">
-        <i class="fa-solid fa-envelope"></i>
-         Mail
     </button>
     <!-- Start_Module_484 --><div id="dnn_ctr496_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
         <div id="dnn_ctr496_View_pnlContainer">
@@ -104,9 +100,9 @@
                     <div class="DKForm">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <table id="lophoctables" class="table table-striped table-bordered" style="min-width: max-content;">
+                                <table id="lophoctables" class="table table-striped " style="min-width: max-content;">
                                     <thead class="text-secondary-m2 bg-tbl-header ">
-                                        <tr class="text-black">
+                                        <tr class="text-white">
                                             <th class="border-0">Mã lớp Học </th>
                                             <th class="border-0">Tên Lớp Học </th>
                                             <th class="border-0">Sĩ Số </th>
@@ -160,7 +156,11 @@
                 "columnDefs": [
                     { "data": "maLop", "className": "text-center font-size-15", "orderable": false, "targets": 0 },
                     { "data": "tenLop", "className": "text-center font-size-15", "orderable": false, "targets": 1 },
-                    { "data": "siSo", "className": "text-center font-size-15", "orderable": false, "targets": 2 },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 2,
+                        "render": function (row) {
+                            return `<span>${row.soLuong}/${row.siSo}</span>`
+                        }
+                    },
                     { "data": "hocNgoaiNgu", "className": "text-center font-size-15", "orderable": false, "targets": 3 },
                     { "data": "tenNienKhoa", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
                     { "data": "hoTen", "className": "text-center font-size-15", "orderable": false, "targets": 5 },
@@ -172,6 +172,7 @@
                         }
                     }
                 ],
+                searching :false,
                 language: {
                     search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 3%; color:#0984e3"> </i>',
                     searchPlaceholder: " Tra cứu ...",
