@@ -23,7 +23,9 @@ namespace TTLProject2.Entities
 
         public float DiemGk { get; set; }
 
-        public float DiemCk { get; set; }
+		public string? MaLop { get; set; }
+
+		public float DiemCk { get; set; }
 
         public float DiemTbHk { get {
                 var diemKtMieng = DiemKiemTraMieng;

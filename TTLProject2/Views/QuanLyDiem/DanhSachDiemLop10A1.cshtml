@@ -4,7 +4,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Lớp 10A1";
+    ViewData["Title"] = "Lớp ";
 }
 <div class='contentpane'>
 	<div class='container-fluid mt-5'>
@@ -12,8 +12,9 @@
 			<div class="DnnModule DnnModule-ThacsyOnline DnnModule-496">
 				<div class="etep-3">
 					<h2>
-						<p id="dnn_ctr496_dnnTITLE_titleLabel" class="title text-center font-bold">Quản lý điểm lớp 10A1 </p>
+						<p id="dnn_ctr496_dnnTITLE_titleLabel" class="title text-center font-bold">Quản lý điểm lớp @Model.MaLop </p>
 							<p id="dnn_ctr496_dnnTITLE_titleLabel" class="title text-center font-bold">Danh Sách Môn Học </p>
+							
 					</h2>
 					<div class='container-content' style="position:relative">
 						<!--Thêm mới modal-->
@@ -45,38 +46,38 @@
 											     <div class="col-md-4">
 													 <img src="~/asset/images/math.jpg" style="width:100%;"/>
 													<p class="text-center">
-														<a href="/QuanLyDiem/DanhSachDiemLop10A1MonToan" class="text-decoration-none text-black fs-2 text-center">Toán</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=1&maLop=@Model.MaLop" class="text-decoration-none text-black fs-2 text-center">Toán</a>
 													 </p>
 												 </div>
 												<div class="col-md-4">
 													<img src="~/asset/images/Tiếng Anh.jpg" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">Tiếng Anh</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=3&maLop=@Model.MaLop" class="text-decoration-none text-black fs-2 ">Tiếng Anh</a>
 													</p>
 												</div>
 												<div class="col-md-4">
 													<img src="~/asset/images/Ngữ Văn.png" style="width:100%;" />
 													<p class="text-center">
-														<a href="/QuanLyDiem/DanhSachDiemLop10A1MonNguVan" class="text-decoration-none text-black fs-2 ">Ngữ văn</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=2&maLop=@Model.MaLop" class="text-decoration-none text-black fs-2 ">Ngữ văn</a>
 													</p>
 												</div>
 												<h2 class="mt-3">Khoa Học Tự Nhiên :</h2>
 												<div class="col-md-4">
 													<img src="~/asset/images/Hóa học.jpg" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">Hóa Học</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=7&maLop=@Model.MaLop" class="text-decoration-none text-black fs-2 ">Hóa Học</a>
 													</p>
 												</div>
 												<div class="col-md-4">
 													<img src="~/asset/images/sinh học.jpg" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">Sinh Học</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=4" class="text-decoration-none text-black fs-2 ">Sinh Học</a>
 													</p>
 												</div>
 												<div class="col-md-4">
 													<img src="~/asset/images/Vật Lý.jpg" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">Vật Lý</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=12" class="text-decoration-none text-black fs-2 ">Vật Lý</a>
 													</p>
 												</div>
 
@@ -85,19 +86,19 @@
 												<div class="col-md-4">
 													<img src="~/asset/images/địa lý.jpg" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">Địa Lý</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=6" class="text-decoration-none text-black fs-2 ">Địa Lý</a>
 													</p>
 												</div>
 												<div class="col-md-4">
 													<img src="~/asset/images/Lịch sử.png" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">Lịch sử </a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=5" class="text-decoration-none text-black fs-2 ">Lịch sử </a>
 													</p>
 												</div>
 												<div class="col-md-4">
 													<img src="~/asset/images/GDCD.svg" style="width:100%;" />
 													<p class="text-center">
-														<a href="" class="text-decoration-none text-black fs-2 ">GDCD</a>
+														<a href="/QuanLyDiem/DanhSachDiemTheoMonHoc?maMonHoc=8" class="text-decoration-none text-black fs-2 ">GDCD</a>
 													</p>
 												</div>
 

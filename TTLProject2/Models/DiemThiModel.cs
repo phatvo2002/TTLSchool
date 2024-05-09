@@ -31,6 +31,8 @@ namespace TTLProject2.Models
 
 		public float DiemCk { get; set; }
 
+		public string? MaLop {  get; set; }
+
 		public float DiemTbHk
 		{
 		   get; set;

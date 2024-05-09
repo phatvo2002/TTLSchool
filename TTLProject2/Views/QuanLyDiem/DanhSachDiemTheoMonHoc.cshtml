@@ -3,18 +3,15 @@
 *@
 @{
 }
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+
+
 @model TTLProject2.Models.DiemThiModel
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-	ViewData["Title"] = "Lớp 10A1";
+	ViewData["Title"] = "Lớp ";
 }
 <div class='contentpane'>
 	<div class='container-fluid mt-5'>
@@ -22,14 +19,17 @@
 			<div class="DnnModule DnnModule-ThacsyOnline DnnModule-496">
 				<div class="etep-3">
 					<h2>
-						<span id="dnn_ctr496_dnnTITLE_titleLabel" class="title">Quản lý điểm lớp 10A1 Môn Ngữ Văn </span>
+						<p id="dnn_ctr496_dnnTITLE_titleLabel" class="title text-center">Quản lý điểm lớp @Model.MaLop </p>
+						
 					</h2>
+					
 					<div class='container-content' style="position:relative">
 						<!--Thêm mới modal-->
-						<button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:74%;top:4%;z-index:100;border-radius:20px;">
+						<button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:74%;top:5%;z-index:100;border-radius:20px;">
 							<i class="fa-solid fa-plus"></i>
 							Thêm
 						</button>
+						
 						<!-- Modal -->
 						<form id="themmoi" method="post">
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,7 +37,7 @@
 									<div class="modal-content">
 										<div class="modal-header" style="background-color: #3c8dbc; color:white;">
 											<img src="~/files/2024/images/logo1.jpg" style="width:80px;border-radius:50%" />
-											<h5 class="modal-title" id="exampleModalLabel">Nhập Điểm Học Sinh lớp 10A1</h5>
+											<h5 class="modal-title" id="exampleModalLabel">Nhập Điểm Học Sinh lớp @Model.MaLop</h5>
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
@@ -58,7 +58,7 @@
 											</div>
 											<div class="mb-3">
 												<label for="" class="form-label">Môn học</label>
-												<select class="form-select" aria-label="Default select example" asp-for="MaMonHoc" asp-items="Model.DanhSachMonHoc">
+                                                <select class="form-select" aria-label="Default select example" asp-for="MaMonHoc" asp-items="Model.DanhSachMonHoc" id="maMonHoc">
 													<option selected>-- Chọn Môn Học --</option>
 
 												</select>
@@ -173,169 +173,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<script>
+	<script src="~/js/quantri//diem.js">
 
-		function CaculateDiemTb() {
-			var diemMieng = parseFloat(document.getElementById("mieng").value);
-			var diemKiemTra15PhutLan1 = parseFloat(document.getElementById("diem15L1").value);
-			var diemKiemTra15PhutLan2 = parseFloat(document.getElementById("diem15L2").value);
-			var diemKiemTra1Tiet = parseFloat(document.getElementById("diem1tiet").value);
-			var diemGk = parseFloat(document.getElementById("diemgk").value);
-			var diemck = parseFloat(document.getElementById("diemck").value);
-
-			var tongDiem = diemMieng + diemKiemTra15PhutLan1 + diemKiemTra15PhutLan2 + diemKiemTra1Tiet + (diemGk * 2) + (diemck * 3);
-			var tongSoDiem = 4 + 5;
-
-			var diemTrungBinh = tongDiem / tongSoDiem;
-
-			document.getElementById("total").value = diemTrungBinh.toFixed(2)
-		}
-
-
-		$(document).ready(function () {
-			$("#Lop10A1").dataTable({
-				"bInfo": false,
-				"responsive": false,
-				"autoWidth": false,
-				"ajax": {
-					"type": "GET",
-					"url": "/QuanLyDiem/DiemLop10A1MonNguVanGetList",
-					"contentType": "application/json",
-					"datatype": "json",
-					"dataSrc": function (json) {
-						console.log(json.data)
-						return json.data;
-					},
-
-				},
-				"columnDefs": [
-					{ "data": "hoten", "className": "text-center font-size-15", "orderable": false, "targets": 0 },
-					{
-						"data": "maHocKiNamHoc", "className": "text-center font-size-15", "orderable": false, "targets": 1,
-						"render": function (data) {
-							if (data == 1)
-								return "<span>Học kì I năm 2024-2025</span>"
-							if (data == 2)
-								return "<span>Học kì II năm 2024-2025</span>"
-						}
-					},
-					{
-						"data": "maMonHoc", "className": "text-center font-size-15", "orderable": false, "targets": 2,
-						"render": function (data) {
-							if (data == 1)
-								return "<span>Toán</span>"
-							if (data == 2)
-								return "<span>Ngữ văn</span>"
-							if (data == 3)
-								return "<span>Ngoại ngữ</span>"
-							if (data == 4)
-								return "<span>Sinh học</span>"
-							if (data == 5)
-								return "<span>Lịch sử</span>"
-							if (data == 6)
-								return "<span>Địa lý</span>"
-							if (data == 7)
-								return "<span>Hóa Học</span>"
-							if (data == 8)
-								return "<span>GDCD</span>"
-							if (data == 9)
-								return "<span>Công nghệ </span>"
-							if (data == 10)
-								return "<span>Tin Học</span>"
-							if (data == 11)
-								return "<span>Thể Dục</span>"
-						}
-					},
-					{
-						"data": "diemKiemTraMieng", "className": "text-center font-size-15", "orderable": false, "targets": 3,
-
-					},
-					{ "data": "diem15PhutLan1", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
-					{ "data": "diem15PhutLan2", "className": "text-center font-size-15", "orderable": false, "targets": 5 },
-					{ "data": "diemKT1Tiet", "className": "text-center font-size-15", "orderable": false, "targets": 6 },
-					{ "data": "diemGk", "className": "text-center font-size-15", "orderable": false, "targets": 7 },
-					{ "data": "diemCk", "className": "text-center font-size-15", "orderable": false, "targets": 8 },
-					{
-						"data": "diemTbHk", "className": "text-center font-size-15", "orderable": false, "targets": 9,
-						"render": function (data) {
-							var result = data.toFixed(2)
-							return `<span>${result}</span>`
-						}
-					},
-					{
-						"data": null, "className": "text-center font-size-15", "orderable": false, "targets": 10,
-						"render": function () {
-							return "<span class='text-primary'> <i class='fa-solid fa-pen-to-square'></i></span>"
-						}
-					},
-
-				],
-				language: {
-					search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 3%; color:#0984e3"> </i>',
-					searchPlaceholder: " Tra cứu ...",
-					emptyTable: "Dữ liệu hiện tại chưa có...",
-					zeroRecords: "Không tìm thấy dữ liệu...",
-
-					loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
-					paginate: {
-						"first": "First",
-						"last": "Last",
-						"next": "Tiếp theo",
-						"previous": "Quay lại"
-					}
-				},
-				oLanguage: {
-					"sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
-					"sZeroRecords": "Nothing found - sorry",
-					"sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
-					"sInfoEmpty": "",
-					"sInfoFiltered": "(filtered from _MAX_ total records)"
-				},
-			})
-		})
-		$(document).ready(function () {
-			$("#themmoi").submit(function (e) {
-				e.preventDefault();
-				var formData = new FormData($(this)[0]);
-				console.log(formData);
-				$.ajax({
-					url: "/QuanLyDiem/InsertDiemHocSinh",
-					type: "POST",
-					data: formData,
-					contentType: false,
-					processData: false,
-					success: function (response) {
-						console.log(response)
-						if (response.success) {
-							Swal.fire({
-								title: "Thành công !",
-								text: response.success,
-								icon: "success"
-							});
-							setTimeout(function () {
-								window.location.reload();
-							}, 1500);
-							console.log(response.success);
-						}
-						else {
-							Swal.fire({
-								title: "Lỗi  !",
-								text: response.error,
-								icon: "error"
-							});
-							console.log(response.error);
-						}
-							
-					
-
-					},
-					error: function (xhr, status, error) {
-
-						console.log(xhr.responseText);
-					}
-				})
-			})
-		})
 
 	</script>
 }

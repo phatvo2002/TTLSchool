@@ -57,42 +57,22 @@ namespace TTLProject2.Bussiness
 
         Task<IEnumerable<HocSinh>> GetHocSinh10a1();
 
-        Task<IEnumerable<Diem>> GetHocSinh10a1MonToan();
 
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonNguVan();
+		Task<IEnumerable<HocSinh>> GetHocSinhByMaLop(string maLop);
 
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonNgoaiNgu();
-
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonSinhHoc();
-
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonHoaHoc();
-
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonVayLy();
-
-		Task<IEnumerable<Diem>> GetHocSinh10a1LichSu();
-
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonDiaLy();
-
-		Task<IEnumerable<Diem>> GetHocSinh10a1MonGDCD();
-
-		Task<IEnumerable<MonHoc>> GetMonToan();
+		
 
 
-		Task<IEnumerable<MonHoc>> GetMonNGuVan();
+        Task<IEnumerable<MonHoc>> GetMonHocByMaMonHoc(int maMonHoc);
 
-		Task<IEnumerable<MonHoc>> GetMonTiengAnh();
+        Task<DiemThiModel> GetMonHocById(int id);
 
-		Task<IEnumerable<MonHoc>> GetMonHoaHoc();
 
-		Task<IEnumerable<MonHoc>> GetMonVatLy();
+		Task<IEnumerable<Diem>> GetDiemHocSinh10a1ByMaMonHoc(int maMonHoc);
 
-		Task<IEnumerable<MonHoc>> GetMonSinhHoc();
 
-		Task<IEnumerable<MonHoc>> GetMonDiaLy();
+		Task<IEnumerable<Diem>> GetDiemHocSinhByMaMonHocAndMaLop(int maMonHoc , string maLop);
 
-		Task<IEnumerable<MonHoc>> GetMonLichSu();
-
-		Task<IEnumerable<MonHoc>> GetMonGDCD();
 	}
 }
 
