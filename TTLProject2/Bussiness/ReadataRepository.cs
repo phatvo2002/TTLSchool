@@ -201,6 +201,86 @@ namespace TTLProject2.Bussiness
 			}
 		}
 
+		public async Task<IEnumerable<HocSinh>> GetHocSinh10a1()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<HocSinh>("get_hocsinh_10a1", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1LichSu()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monLichSu", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonDiaLy()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monDiaLy", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonGDCD()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monGDCD", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonHoaHoc()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monHoaHoc", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonNgoaiNgu()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monNgoaingu", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonNguVan()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monNguVan", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonSinhHoc()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monSinhHoc", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonToan()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monToan", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinh10a1MonVayLy()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1_monVatLy", commandType: CommandType.StoredProcedure);
+			}
+		}
+
 		public async Task<HocSinhModel> GetHocSinhByID(string id)
 		{
 			using (IDbConnection db = new SqlConnection(_connectionString))
@@ -208,6 +288,14 @@ namespace TTLProject2.Bussiness
                 var _params = new DynamicParameters();
                 _params.Add("@maHocSinh", id);
                 return await db.QuerySingleOrDefaultAsync<HocSinhModel>("gethocsinh_by_maHocSinh", _params, commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<Diem>> GetHocSinhLop10A1()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<Diem>("get_DiemHocSinh_Lop10A1", commandType: CommandType.StoredProcedure);
 			}
 		}
 
@@ -227,7 +315,31 @@ namespace TTLProject2.Bussiness
             }
         }
 
-        public async Task<IEnumerable<MonHoc>> GetMonHoc()
+		public async Task<IEnumerable<MonHoc>> GetMonDiaLy()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_dialy", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonGDCD()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_GDCD", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonHoaHoc()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_hoahoc", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonHoc()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -235,7 +347,55 @@ namespace TTLProject2.Bussiness
             }
         }
 
-        public async Task<IEnumerable<NienKhoa>> GetNienKhoa()
+		public async Task<IEnumerable<MonHoc>> GetMonLichSu()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_lichsu", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonNGuVan()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_monNguVan", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonSinhHoc()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_sinhoc", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonTiengAnh()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_ngoaiNgu", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonToan()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_monToan", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<MonHoc>> GetMonVatLy()
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				return await db.QueryAsync<MonHoc>("get_vatly", commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<IEnumerable<NienKhoa>> GetNienKhoa()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

@@ -7,6 +7,8 @@ namespace TTLProject2.Entities
     {
         public string? MaHocSinh { get; set; }
 
+        public string? Hoten { get; set; }
+
         public string? MaHocKiNamHoc { get; set; }
 
         public int MaMonHoc { get; set; }
@@ -17,20 +19,20 @@ namespace TTLProject2.Entities
 
         public float Diem15PhutLan2 { get; set; }
 
-        public float DiemKiemTra1Tiet {  get; set; }
+        public float DiemKT1Tiet { get; set; }
 
-        public float DiemGk {  get; set; }
+        public float DiemGk { get; set; }
 
         public float DiemCk { get; set; }
 
         public float DiemTbHk { get {
-                var diemKtMieng  = DiemKiemTraMieng;
+                var diemKtMieng = DiemKiemTraMieng;
                 var diemKt15Phut1 = Diem15PhutLan1;
                 var diemKt15Phut2 = Diem15PhutLan2;
-                var diemKt1Tiet = DiemKiemTra1Tiet;
+                var diemKt1Tiet = DiemKT1Tiet;
                 var diemGk = DiemGk;
                 var diemCk = DiemCk;
-                var total = ((diemKtMieng + diemKt15Phut1 + diemKt15Phut2 + diemKt1Tiet) + (diemGk * 2) + (diemCk * 3)) / (4+5);
+                var total = ((diemKtMieng + diemKt15Phut1 + diemKt15Phut2 + diemKt1Tiet) + (diemGk * 2) + (diemCk * 3)) / (4 + 5);
                 return total;
             } }
 

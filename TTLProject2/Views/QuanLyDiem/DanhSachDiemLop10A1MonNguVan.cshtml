@@ -1,0 +1,341 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model TTLProject2.Models.DiemThiModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	ViewData["Title"] = "Lớp 10A1";
+}
+<div class='contentpane'>
+	<div class='container-fluid mt-5'>
+		<div id="dnn_ContentPane">
+			<div class="DnnModule DnnModule-ThacsyOnline DnnModule-496">
+				<div class="etep-3">
+					<h2>
+						<span id="dnn_ctr496_dnnTITLE_titleLabel" class="title">Quản lý điểm lớp 10A1 Môn Ngữ Văn </span>
+					</h2>
+					<div class='container-content' style="position:relative">
+						<!--Thêm mới modal-->
+						<button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:74%;top:4%;z-index:100;border-radius:20px;">
+							<i class="fa-solid fa-plus"></i>
+							Thêm
+						</button>
+						<!-- Modal -->
+						<form id="themmoi" method="post">
+							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog ">
+									<div class="modal-content">
+										<div class="modal-header" style="background-color: #3c8dbc; color:white;">
+											<img src="~/files/2024/images/logo1.jpg" style="width:80px;border-radius:50%" />
+											<h5 class="modal-title" id="exampleModalLabel">Nhập Điểm Học Sinh lớp 10A1</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<div class="mb-3">
+												<label for="" class="form-label">Học Kì</label>
+												<select class="form-select" aria-label="Default select example" asp-for="MaHocKiNamHoc" asp-items="Model.DanhSachHocKiNamHoc">
+													<option selected>-- Chọn Học Kì --</option>
+
+												</select>
+											</div>
+											<div class="mb-3">
+												<label for="" class="form-label"> Học Sinh</label>
+												<select class="form-select" aria-label="Default select example" asp-for="MaHocSinh" asp-items="Model.DanhSachHocSinh">
+													<option selected>-- Chọn học sinh  --</option>
+
+												</select>
+
+											</div>
+											<div class="mb-3">
+												<label for="" class="form-label">Môn học</label>
+												<select class="form-select" aria-label="Default select example" asp-for="MaMonHoc" asp-items="Model.DanhSachMonHoc">
+													<option selected>-- Chọn Môn Học --</option>
+
+												</select>
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm kiểm tra miệng</label>
+												<input type="number" class="form-control" id="mieng" aria-describedby="emailHelp" asp-for="DiemKiemTraMieng">
+
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm kiểm tra 15 phút lần 1</label>
+												<input type="number" class="form-control" id="diem15L1" aria-describedby="emailHelp" asp-for="Diem15PhutLan1">
+
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm kiểm tra 15 phút lần 2</label>
+												<input type="number" class="form-control" id="diem15L2" aria-describedby="emailHelp" asp-for="Diem15PhutLan2">
+
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm kiểm tra 1 tiết</label>
+												<input type="number" class="form-control" id="diem1tiet" aria-describedby="emailHelp" asp-for="DiemKT1Tiet">
+
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm Giữa kì</label>
+												<input type="number" class="form-control" id="diemgk" aria-describedby="emailHelp" asp-for="DiemGk">
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm Cuối kì </label>
+												<input type="number" class="form-control" id="diemck" aria-describedby="emailHelp" asp-for="DiemCk">
+											</div>
+											<div class="mb-3">
+												<label for="mieng" class="form-label">Điểm trung bình học kì  </label>
+												<input type="text" class="form-control" id="total" aria-describedby="emailHelp" asp-for="DiemTbHk" onchange="CaculateDiemTb(this.value)">
+											</div>
+
+											<i>Lưu ý <span class="text-danger">(*)</span>: Điểm sẽ không thể xóa được trên hệ thống nên mong giáo viên hãy xem kĩ trước khi nhập .</i>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+											<button type="submit" class="btn btn-primary">Lưu</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<!--Thêm mới modal-->
+						<!--Button Modal -->
+						@* <button type="submit" class="btn btn-danger" id="delete-btn" style="position:absolute;left:80%;top:4%;border-radius:50px;z-index:1000;">
+						<i class="fa-solid fa-trash"></i>
+						Xóa
+						</button>
+						*@
+						<!--Button Modal-->
+
+						<div id="dnn_ctr496_ContentPane">
+							<!-- Start_Module_484 --><div id="dnn_ctr496_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
+								<div id="dnn_ctr496_View_pnlContainer">
+									<style>
+										.DKForm {
+											margin: 20px auto;
+											padding: 10px 20px;
+											border: 1px dashed #ddd;
+										}
+									</style>
+									<body>
+										<div id="">
+											<div class="DKForm">
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+														<table id="Lop10A1" class="table table-striped " style="min-width: max-content;">
+															<thead class="text-secondary-m2 bg-tbl-header ">
+																<tr class="text-white">
+																	<th class="border-0">Họ Tên </th>
+																	<th class="border-0">Học Kì </th>
+																	<th class="border-0">Môn Học </th>
+																	<th class="border-0">Điểm miệng</th>
+																	<th class="border-0">Điểm 15 phút 1</th>
+																	<th class="border-0">Điểm 15 phút 2</th>
+																	<th class="border-0">Điểm KT 1 tiết</th>
+																	<th class="border-0">Điểm Gk </th>
+																	<th class="border-0">Điểm CK </th>
+																	<th class="border-0">Điểm trung bình môn</th>
+																	<th class="border-0 tbl-column-130"><i class="fa fa-cog"></i></th>
+																</tr>
+															</thead>
+															<tbody></tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</body>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" href="~/css/style.css" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+@section Scripts {
+	<script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+	<script src="~/js/datatables.js"></script>
+	<script src="~/lib/moment/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script>
+
+		function CaculateDiemTb() {
+			var diemMieng = parseFloat(document.getElementById("mieng").value);
+			var diemKiemTra15PhutLan1 = parseFloat(document.getElementById("diem15L1").value);
+			var diemKiemTra15PhutLan2 = parseFloat(document.getElementById("diem15L2").value);
+			var diemKiemTra1Tiet = parseFloat(document.getElementById("diem1tiet").value);
+			var diemGk = parseFloat(document.getElementById("diemgk").value);
+			var diemck = parseFloat(document.getElementById("diemck").value);
+
+			var tongDiem = diemMieng + diemKiemTra15PhutLan1 + diemKiemTra15PhutLan2 + diemKiemTra1Tiet + (diemGk * 2) + (diemck * 3);
+			var tongSoDiem = 4 + 5;
+
+			var diemTrungBinh = tongDiem / tongSoDiem;
+
+			document.getElementById("total").value = diemTrungBinh.toFixed(2)
+		}
+
+
+		$(document).ready(function () {
+			$("#Lop10A1").dataTable({
+				"bInfo": false,
+				"responsive": false,
+				"autoWidth": false,
+				"ajax": {
+					"type": "GET",
+					"url": "/QuanLyDiem/DiemLop10A1MonNguVanGetList",
+					"contentType": "application/json",
+					"datatype": "json",
+					"dataSrc": function (json) {
+						console.log(json.data)
+						return json.data;
+					},
+
+				},
+				"columnDefs": [
+					{ "data": "hoten", "className": "text-center font-size-15", "orderable": false, "targets": 0 },
+					{
+						"data": "maHocKiNamHoc", "className": "text-center font-size-15", "orderable": false, "targets": 1,
+						"render": function (data) {
+							if (data == 1)
+								return "<span>Học kì I năm 2024-2025</span>"
+							if (data == 2)
+								return "<span>Học kì II năm 2024-2025</span>"
+						}
+					},
+					{
+						"data": "maMonHoc", "className": "text-center font-size-15", "orderable": false, "targets": 2,
+						"render": function (data) {
+							if (data == 1)
+								return "<span>Toán</span>"
+							if (data == 2)
+								return "<span>Ngữ văn</span>"
+							if (data == 3)
+								return "<span>Ngoại ngữ</span>"
+							if (data == 4)
+								return "<span>Sinh học</span>"
+							if (data == 5)
+								return "<span>Lịch sử</span>"
+							if (data == 6)
+								return "<span>Địa lý</span>"
+							if (data == 7)
+								return "<span>Hóa Học</span>"
+							if (data == 8)
+								return "<span>GDCD</span>"
+							if (data == 9)
+								return "<span>Công nghệ </span>"
+							if (data == 10)
+								return "<span>Tin Học</span>"
+							if (data == 11)
+								return "<span>Thể Dục</span>"
+						}
+					},
+					{
+						"data": "diemKiemTraMieng", "className": "text-center font-size-15", "orderable": false, "targets": 3,
+
+					},
+					{ "data": "diem15PhutLan1", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
+					{ "data": "diem15PhutLan2", "className": "text-center font-size-15", "orderable": false, "targets": 5 },
+					{ "data": "diemKT1Tiet", "className": "text-center font-size-15", "orderable": false, "targets": 6 },
+					{ "data": "diemGk", "className": "text-center font-size-15", "orderable": false, "targets": 7 },
+					{ "data": "diemCk", "className": "text-center font-size-15", "orderable": false, "targets": 8 },
+					{
+						"data": "diemTbHk", "className": "text-center font-size-15", "orderable": false, "targets": 9,
+						"render": function (data) {
+							var result = data.toFixed(2)
+							return `<span>${result}</span>`
+						}
+					},
+					{
+						"data": null, "className": "text-center font-size-15", "orderable": false, "targets": 10,
+						"render": function () {
+							return "<span class='text-primary'> <i class='fa-solid fa-pen-to-square'></i></span>"
+						}
+					},
+
+				],
+				language: {
+					search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 56%; top: 3%; color:#0984e3"> </i>',
+					searchPlaceholder: " Tra cứu ...",
+					emptyTable: "Dữ liệu hiện tại chưa có...",
+					zeroRecords: "Không tìm thấy dữ liệu...",
+
+					loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
+					paginate: {
+						"first": "First",
+						"last": "Last",
+						"next": "Tiếp theo",
+						"previous": "Quay lại"
+					}
+				},
+				oLanguage: {
+					"sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
+					"sZeroRecords": "Nothing found - sorry",
+					"sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
+					"sInfoEmpty": "",
+					"sInfoFiltered": "(filtered from _MAX_ total records)"
+				},
+			})
+		})
+		$(document).ready(function () {
+			$("#themmoi").submit(function (e) {
+				e.preventDefault();
+				var formData = new FormData($(this)[0]);
+				console.log(formData);
+				$.ajax({
+					url: "/QuanLyDiem/InsertDiemHocSinh",
+					type: "POST",
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function (response) {
+						console.log(response)
+						if (response.success) {
+							Swal.fire({
+								title: "Thành công !",
+								text: response.success,
+								icon: "success"
+							});
+							setTimeout(function () {
+								window.location.reload();
+							}, 1500);
+							console.log(response.success);
+						}
+						else {
+							Swal.fire({
+								title: "Lỗi  !",
+								text: response.error,
+								icon: "error"
+							});
+							console.log(response.error);
+						}
+							
+					
+
+					},
+					error: function (xhr, status, error) {
+
+						console.log(xhr.responseText);
+					}
+				})
+			})
+		})
+
+	</script>
+}

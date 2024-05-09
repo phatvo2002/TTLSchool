@@ -202,6 +202,26 @@ namespace TTLProject2.Bussiness
                 return result > 0;
             }
         }
-    }
+
+		public async Task<bool> InsertDiemThiSinh(DiemThiModel diem)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				DynamicParameters _params = new DynamicParameters();
+                _params.Add("@maHocSinh", diem.MaHocSinh);
+				_params.Add("@maHocKiNamHoc", diem.MaHocKiNamHoc);
+				_params.Add("@maMonHoc", diem.MaMonHoc);
+				_params.Add("@diemKiemTraMieng", diem.DiemKiemTraMieng);
+				_params.Add("@diemKiemtra15l1", diem.Diem15PhutLan1);
+				_params.Add("@diemKiemtra15l2", diem.Diem15PhutLan2);
+				_params.Add("@diemkt1Tiet", diem.DiemKT1Tiet);
+				_params.Add("@diemGk", diem.DiemGk);
+				_params.Add("@diemCk", diem.DiemCk);
+				_params.Add("@diemTbhk", diem.DiemTbHk);
+				var result = await db.ExecuteAsync("regist_diem_hocsinh", _params, commandType: CommandType.StoredProcedure);
+				return result > 0;
+			}
+		}
+	}
 }
  

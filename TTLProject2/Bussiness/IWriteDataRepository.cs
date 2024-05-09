@@ -16,12 +16,13 @@ namespace TTLProject2.Bussiness
 
         Task<bool> InsertThiSinh(DangKiViewModel dangkiModel);
 
+        Task<bool> InsertDiemThiSinh(DiemThiModel diem );
+
         Task<IEnumerable<LopHoc>> DeleteLopHoc(string maLop);
 
 		Task<IEnumerable<HocSinh>> DeleteHocSinh(string maHocSinh);
 
         Task<IEnumerable<GiaoVien>> DeleteGiaoVien(string maGiaoVien);
-
 
 
         Task<bool> DeleteGv(string magv);
