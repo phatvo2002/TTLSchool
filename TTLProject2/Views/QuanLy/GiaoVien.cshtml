@@ -208,10 +208,11 @@
 							return `<a style="font-family:'Times New Roman';text-decoration:none;"  href="">${data}</a>`;
 						}
 					},
+					
 					{
-						"data": "hoTen", "className": "text-center font-size-15", "orderable": false, targets: 1,
+						"data": "hoTen", "className": "text-center font-size-15", "orderable": false, "targets": 1,
 						"render": function (data, type, row, meta) {
-							return `<a style="font-family:'Times New Roman';text-decoration:none;" href="" >${data}</a>`;
+							return `<a style="font-family:'Times New Roman';text-decoration:none;" href="/ChinhSuaThongTin/ThongTinGiaoVien/${row.maGiaoVien}" >${data}</a>`;
 						}
 					},
 					{

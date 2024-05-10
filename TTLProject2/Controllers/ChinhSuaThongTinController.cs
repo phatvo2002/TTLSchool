@@ -24,9 +24,9 @@ namespace TTLProject2.Controllers
 			HocSinhModel model = new HocSinhModel();
 			model = await _readataRepository.GetHocSinhByID(id);
 
-            var gioiTinh = new List<GioiTinh>();
-            gioiTinh.AddRange(await _readataRepository.GetGioiTinh());
-            model.DanhSachGioiTinh = new SelectList(gioiTinh, "MaGioiTinh", "TenGioiTinh");
+            var gt = new List<GioiTinh>();
+            gt.AddRange(await _readataRepository.GetGioiTinh());
+            model.DanhSachGioiTinh = new SelectList(gt, "MaGioiTinh", "TenGioiTinh");
 
             var trangThai = new List<TrangThai>();
             trangThai.AddRange(await _readataRepository.GetTrangThai());
@@ -46,5 +46,68 @@ namespace TTLProject2.Controllers
 
             return View(model);
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> UpdateHocSinh(HocSinhModel model)
+		{
+			try
+			{
+				ViewBag.Isvalid = true;
+				model.MaHocSinh = model.MaHocSinh;
+				model.HoTen = model.HoTen;
+				model.MaGioiTinh = model.MaGioiTinh;
+				model.MaLop = model.MaLop;
+				model.MaTrangThai = model.MaTrangThai;
+				model.MaQuocTich = model.MaQuocTich;
+				model.NgaySinh = model.NgaySinh;
+				model.MaDanToc = model.MaDanToc;
+				model.DiaChiNha = model.DiaChiNha;
+				model.SoDienThoai = model.SoDienThoai;
+				model.HoTenBo = model.HoTenBo;
+				model.NgheNghiep1 = model.NgheNghiep1;
+				model.SoDienThoaiBa = model.SoDienThoaiBa;
+				model.HoTenMe = model.HoTenMe;
+				model.NgheNghiep2 = model.NgheNghiep2;
+				model.SoDienThoaiMe = model.SoDienThoaiMe;
+				model.TruongHoc1 = model.TruongHoc1;
+				model.TruongHoc2 = model.TruongHoc2;
+
+				bool result;
+				string errorMessage = "";
+				string successMessage = "";
+
+				try
+				{
+					result = await _writeDataRepository.UpdateHocSinh(model);
+					{
+						if (result)
+						{
+							successMessage = "Chỉnh sửa hồ sơ thành công";
+							ViewBag.success = successMessage;
+						}
+						else
+						{
+							errorMessage = "Đã xảy ra lỗi trong quá trình thêm ";
+							ViewBag.error = errorMessage;
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					ViewBag.error = ex;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				ModelState.AddModelError(string.Empty, ex.Message);
+			}
+			return Json(new { Success = ViewBag.success, Error = ViewBag.error });
+
+
+		}
+
+	
+
 	}
 }

@@ -72,7 +72,7 @@ namespace TTLProject2.Controllers
 				model.SoDienThoai = model.SoDienThoai;
 				model.HoTenBo = model.HoTenBo;
 				model.NgheNghiep1 = model.NgheNghiep1;
-				model.SoDienThoaiBo = model.SoDienThoaiBo;
+				model.SoDienThoaiBa = model.SoDienThoaiBa;
 				model.HoTenMe = model.HoTenMe;
 				model.NgheNghiep2 = model.NgheNghiep2;
 				model.SoDienThoaiMe = model.SoDienThoaiMe;
@@ -124,6 +124,7 @@ namespace TTLProject2.Controllers
 			return Json(new {success = ViewBag.Success , error = ViewBag.Error});
         }
 
+		
         [HttpGet]
         public async Task<IActionResult> GetListHocSinh()
         {

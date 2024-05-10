@@ -73,6 +73,9 @@ namespace TTLProject2.Bussiness
 
 		Task<IEnumerable<Diem>> GetDiemHocSinhByMaMonHocAndMaLop(int maMonHoc , string maLop);
 
+		Task<GiaoVienViewModel> GetGiaoVienByMaGiaoVien(string id);
+
+        Task<IEnumerable<TraCuuDiemViewModel>> GetDiemThiByMaHocSinh(string id);
 	}
 }
 

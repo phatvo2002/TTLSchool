@@ -5,7 +5,7 @@
 *@
 @{
 }
-<form >
+<form id="updateHocSinh">
 	<div class='contentpane'>
 		<div class='container'>
 			<div id="dnn_ContentPane">
@@ -92,6 +92,8 @@
 															<h3>I. Thông tin cá nhân <span style="font-size: 16px;">(Lưu ý mục đánh dấu <span class="required">(*)</span> là bắt buộc)</span></h3>
 															<hr />
 														</div>
+													
+															<input type="hidden" asp-for="MaHocSinh" />
 														<div class="col-md-4 col-sm-12 col-xs-12">
 															<label asp-for="HoTen" class="label">Họ và tên thí sinh (<span class="required">*</span>)</label>
 															<input asp-for="HoTen" class="form-control" />
@@ -108,7 +110,7 @@
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12">
 															<label asp-for="NgaySinh" class="label">Ngày Tháng Năm Sinh (<span class="required">*</span>)</label>
-															<input asp-for="NgaySinh" class="form-control" type="date" />
+															<input asp-for="NgaySinh" class="form-control" type="datetime" />
 															<span asp-validation-for="NgaySinh" class="text-danger"></span>
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
@@ -155,9 +157,9 @@
 															<span asp-validation-for="NgheNghiep1" class="text-danger"></span>
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
-															<label asp-for="SoDienThoaiBo" class="label">Số Điện Thoại(<span class="required">*</span>)</label>
-															<input asp-for="SoDienThoaiBo" class="form-control" />
-															<span asp-validation-for="SoDienThoaiBo" class="text-danger"></span>
+															<label asp-for="SoDienThoaiBa" class="label">Số Điện Thoại(<span class="required">*</span>)</label>
+															<input asp-for="SoDienThoaiBa" class="form-control" />
+															<span asp-validation-for="SoDienThoaiBa" class="text-danger"></span>
 														</div>
 														<div class="col-md-4 col-sm-12 col-xs-12 mt-2">
 															<label asp-for="HoTenMe" class="label">Họ Tên Mẹ  (<span class="required">*</span>)</label>
@@ -210,6 +212,8 @@
 																<span asp-validation-for="MaLop" class="text-danger"></span>
 															</div>
 														</div>
+														<button type="submit" class="btn btn-primary p-2 mt-3">Cập nhật thông tin </button>
+												
 												</div>
 											</div>
 										</body>
@@ -223,3 +227,52 @@
 		</div>
 	</div>
 </form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+	<script src="~/js/datatables.js"></script>
+	<script src="~/lib/moment/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	 <script>
+		$(document).ready(function(){
+			$("#updateHocSinh").submit(function (e) {
+				e.preventDefault();
+				var formData = new FormData($(this)[0]);
+				console.log(formData);
+				$.ajax({
+					url: "/chinhSuaThongTin/UpdateHocSinh",
+					type: "POST",
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function (response) {
+						console.log(response)
+						if (response.success) {
+							Swal.fire({
+								title: "Thành công !",
+								text: response.success,
+								icon: "success"
+							});
+							setTimeout(function () {
+								window.location.reload();
+							}, 1500);
+							console.log(response.success);
+						}
+						else {
+
+							Swal.fire({
+								title: "Lỗi !",
+								text: response.success,
+								icon: "error"
+							});
+						}
+					}
+				})
+				
+			})
+		})
+	 </script>
+}

@@ -53,7 +53,7 @@ namespace TTLProject2.Models
 		[Required(ErrorMessage = "Bạn Chưa Nhập Số Điện Thoại Bố")]
 		[RegularExpression(@"^(84|0[09]|0[07]|0[05])+([0-9]{8})\b$", ErrorMessage = "Số điện thoại phải đúng định dạng với 2 số đầu [09],[07],[05] và tối đa 10 số ")]
 		[Display(Name = "SoDienThoaiBo")]
-		public string? SoDienThoaiBo { get; set; }
+		public string? SoDienThoaiBa { get; set; }
 
 		[Required(ErrorMessage = "Bạn Chưa Nhập Họ Tên Mẹ ")]
 		[Display(Name = "HoTenMe")]

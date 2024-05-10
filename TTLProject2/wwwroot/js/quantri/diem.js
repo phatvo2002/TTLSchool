@@ -131,6 +131,8 @@ $(document).ready(function () {
 			"sInfoEmpty": "",
 			"sInfoFiltered": "(filtered from _MAX_ total records)"
 		},
+		
+		
 	})
 })
 $(document).ready(function () {

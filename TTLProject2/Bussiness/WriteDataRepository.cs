@@ -70,12 +70,12 @@ namespace TTLProject2.Bussiness
                 _params.Add("@soDienThoai", hocSinhModel.SoDienThoai);
                 _params.Add("@hoTenBo", hocSinhModel.HoTenBo);
                 _params.Add("@ngheNghiep1", hocSinhModel.NgheNghiep1);
-                _params.Add("@soDienThoaiBa", hocSinhModel.SoDienThoaiBo);
+                _params.Add("@soDienThoaiBa", hocSinhModel.SoDienThoaiBa);
                 _params.Add("@hoTenMe", hocSinhModel.HoTenMe);
                 _params.Add("@ngheNghiep2", hocSinhModel.NgheNghiep2);
                 _params.Add("@soDienThoaiMe", hocSinhModel.SoDienThoaiMe);
                 _params.Add("@truongHoc1", hocSinhModel.TruongHoc1);
-                _params.Add("@truongHoc2", hocSinhModel.MaGioiTinh);
+                _params.Add("@truongHoc2", hocSinhModel.TruongHoc2);
                 _params.Add("@maDanToc", hocSinhModel.MaDanToc);
                 _params.Add("@maGioiTinh", hocSinhModel.MaTrangThai);
                 _params.Add("@maTrangThai", hocSinhModel.MaTrangThai);
@@ -219,6 +219,34 @@ namespace TTLProject2.Bussiness
 				_params.Add("@diemCk", diem.DiemCk);
 				_params.Add("@diemTbhk", diem.DiemTbHk);
 				var result = await db.ExecuteAsync("regist_diem_hocsinh", _params, commandType: CommandType.StoredProcedure);
+				return result > 0;
+			}
+		}
+
+		public async Task<bool> UpdateHocSinh(HocSinhModel hocSinhModel)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				DynamicParameters _params = new DynamicParameters();
+				_params.Add("@maHocSinh", hocSinhModel.MaHocSinh);
+				_params.Add("@hoTen", hocSinhModel.HoTen);
+				_params.Add("@ngaySinh", hocSinhModel.NgaySinh);
+				_params.Add("@diaChiNha", hocSinhModel.DiaChiNha);
+				_params.Add("@soDienThoai", hocSinhModel.SoDienThoai);
+				_params.Add("@hoTenBo", hocSinhModel.HoTenBo);
+				_params.Add("@ngheNghiep1", hocSinhModel.NgheNghiep1);
+				_params.Add("@soDienThoaiBa", hocSinhModel.SoDienThoaiBa);
+				_params.Add("@hoTenMe", hocSinhModel.HoTenMe);
+				_params.Add("@ngheNghiep2", hocSinhModel.NgheNghiep2);
+				_params.Add("@soDienThoaiMe", hocSinhModel.SoDienThoaiMe);
+				_params.Add("@truongHoc1", hocSinhModel.TruongHoc1);
+				_params.Add("@truongHoc2", hocSinhModel.TruongHoc2);
+				_params.Add("@maDanToc", hocSinhModel.MaDanToc);
+				_params.Add("@maGioiTinh", hocSinhModel.MaTrangThai);
+				_params.Add("@maTrangThai", hocSinhModel.MaTrangThai);
+				_params.Add("@maQuocTich", hocSinhModel.MaQuocTich);
+				_params.Add("@maLop", hocSinhModel.MaLop);
+				var result = await db.ExecuteAsync("update_thongtin_hocsinh", _params, commandType: CommandType.StoredProcedure);
 				return result > 0;
 			}
 		}

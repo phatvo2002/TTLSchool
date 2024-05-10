@@ -10,7 +10,9 @@ namespace TTLProject2.Bussiness
         Task<bool> InsertGiaoVien(GiaoVien giaoVien);
         Task<bool> InsertHocSinh(HocSinhModel hocSinhModel);
 
-        Task<bool> InsertUserRole(UserRoleModel userRoleModel); 
+        Task<bool> InsertUserRole(UserRoleModel userRoleModel);
+
+        Task<bool> UpdateHocSinh(HocSinhModel hocSinhModel);
 
         Task<bool> InsertLopHoc(LopHocViewModel lopHocModel);
 

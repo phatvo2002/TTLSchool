@@ -323,21 +323,7 @@ namespace TTLProject2.Bussiness
 			}
 		}
 
-		public async Task<IEnumerable<MonHoc>> GetMonGDCD()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_GDCD", commandType: CommandType.StoredProcedure);
-			}
-		}
-
-		public async Task<IEnumerable<MonHoc>> GetMonHoaHoc()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_hoahoc", commandType: CommandType.StoredProcedure);
-			}
-		}
+		
 
 		public async Task<IEnumerable<MonHoc>> GetMonHoc()
 		{
@@ -347,53 +333,7 @@ namespace TTLProject2.Bussiness
 			}
 		}
 
-		public async Task<IEnumerable<MonHoc>> GetMonLichSu()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_lichsu", commandType: CommandType.StoredProcedure);
-			}
-		}
-
-		public async Task<IEnumerable<MonHoc>> GetMonNGuVan()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_monNguVan", commandType: CommandType.StoredProcedure);
-			}
-		}
-
-		public async Task<IEnumerable<MonHoc>> GetMonSinhHoc()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_sinhoc", commandType: CommandType.StoredProcedure);
-			}
-		}
-
-		public async Task<IEnumerable<MonHoc>> GetMonTiengAnh()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_ngoaiNgu", commandType: CommandType.StoredProcedure);
-			}
-		}
-
-		public async Task<IEnumerable<MonHoc>> GetMonToan()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_monToan", commandType: CommandType.StoredProcedure);
-			}
-		}
-
-		public async Task<IEnumerable<MonHoc>> GetMonVatLy()
-		{
-			using (IDbConnection db = new SqlConnection(_connectionString))
-			{
-				return await db.QueryAsync<MonHoc>("get_vatly", commandType: CommandType.StoredProcedure);
-			}
-		}
+	
 
 		public async Task<IEnumerable<NienKhoa>> GetNienKhoa()
 		{
@@ -475,6 +415,26 @@ namespace TTLProject2.Bussiness
 				_params.Add("@maMonHoc", maMonHoc);
 				_params.Add("@maLop", maLop);
 				return await db.QueryAsync<Diem>("get_DiemHocSinh_monHocAndMaLop", _params, commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public async Task<GiaoVienViewModel> GetGiaoVienByMaGiaoVien(string id)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				var _params = new DynamicParameters();
+				_params.Add("@maGiaoVien", id);
+				return await db.QuerySingleOrDefaultAsync<GiaoVienViewModel>("get_giaoVien_byid", _params, commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		public  async Task<IEnumerable<TraCuuDiemViewModel>> GetDiemThiByMaHocSinh(string id)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				var _params = new DynamicParameters();
+				_params.Add("@MaHocSinh", id);
+				return await db.QueryAsync<TraCuuDiemViewModel>("get_diemhocsinh_by_mahocsinh", _params, commandType: CommandType.StoredProcedure);
 			}
 		}
 	}

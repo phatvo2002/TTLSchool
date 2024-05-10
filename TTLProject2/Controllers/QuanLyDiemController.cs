@@ -84,7 +84,7 @@ namespace TTLProject2.Controllers
                     string successMessage = "";
 
                     result = await _writeDataRepository.InsertDiemThiSinh(model);
-                    if(result )
+                    if(result)
                     {
 						successMessage = "Nhập thành công";
                         ViewBag.success = successMessage;
