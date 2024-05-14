@@ -58,7 +58,7 @@ namespace TTLProject2.Controllers
 
 		
 
-  
+   
 
 		[HttpPost]
         public async Task<IActionResult> InsertDiemHocSinh(DiemThiModel model)

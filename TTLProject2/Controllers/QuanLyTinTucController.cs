@@ -8,5 +8,10 @@ namespace TTLProject2.Controllers
         {
             return View();
         }
+
+        public IActionResult ThongBao()
+        {
+            return View();
+        }
     }
 }

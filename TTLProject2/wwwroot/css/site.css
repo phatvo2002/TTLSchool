@@ -73,3 +73,7 @@ body {
     border-collapse: collapse;
     padding: 5px;
 }
+.hover_style:hover{
+    color :gray;
+    text-decoration:underline;
+}
