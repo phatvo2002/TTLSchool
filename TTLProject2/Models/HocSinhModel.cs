@@ -76,6 +76,8 @@ namespace TTLProject2.Models
 		[Display(Name = "TruongHoc2")]
 		public string? TruongHoc2 { get; set; }
 
+		public string? Email { get; set; }
+
 		public SelectList? DanhsachLopHoc { get; set; }
 
 		public SelectList? DanhSachDanToc { get; set; }

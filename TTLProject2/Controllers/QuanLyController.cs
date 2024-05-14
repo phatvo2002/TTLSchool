@@ -78,6 +78,7 @@ namespace TTLProject2.Controllers
 				model.SoDienThoaiMe = model.SoDienThoaiMe;
 				model.TruongHoc1 = model.TruongHoc1;
 				model.TruongHoc2 = model.TruongHoc2;
+				model.Email = model.Email;
 
 				try
 				{

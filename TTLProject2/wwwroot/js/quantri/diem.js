@@ -62,6 +62,8 @@ $(document).ready(function () {
 			{
 				"data": "maMonHoc", "className": "text-center font-size-15", "orderable": false, "targets": 2,
 				"render": function (data) {
+					if (data == 12)
+						return "<span> Vật Lý</span>"
 					if (data == 1)
 						return "<span>Toán</span>"
 					if (data == 2)
@@ -84,6 +86,7 @@ $(document).ready(function () {
 						return "<span>Tin Học</span>"
 					if (data == 11)
 						return "<span>Thể Dục</span>"
+					
 				}
 			},
 			{

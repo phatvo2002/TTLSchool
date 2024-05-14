@@ -27,6 +27,8 @@ namespace TTLProject2.Bussiness
 
 		Task<IEnumerable<GiaoVien>> GetGiaoVienById(string maGiaoVien);
 
+        Task<HocSinhModel> GetHocSinhByEmail(string email);
+
         Task<IEnumerable<HocSinh>> GetHocSinh();
 
         Task<IEnumerable<Diem>> GetHocSinhLop10A1();

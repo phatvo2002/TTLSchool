@@ -88,26 +88,7 @@
                         </li>
                        
                         
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            var roles = await UserManager.GetRolesAsync(user!);
-
-                            if (roles.Contains("Học Sinh") || roles.Contains("Quản Trị") )
-                            {
-                               
-                                <li class="nav-item ">
-                                    <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">QUẢN LÝ BÀI VIẾT </a>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-item border-bottom p-3 menu-list">
-                                            <i class="fa-solid fa-caret-right"></i>
-                                            <a href="" class="dropdown-link fs-6 text-decoration-none ">QUẢN LÝ THÔNG BÁO</a>
-                                        </div>
-
-
-                                    </div>
-                                </li>
-                            }
-                        }
+                      
 
                         @if (SignInManager.IsSignedIn(User))
                         {
@@ -138,6 +119,10 @@
                                             <i class="fa-solid fa-caret-right"></i>
                                             <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLyDiem" asp-action="DanhSachDiemHocSinh">QUẢN LÝ ĐIỂM </a>
                                         </div>
+                                        <div class="dropdown-item border-bottom p-3 menu-list">
+                                            <i class="fa-solid fa-caret-right"></i>
+                                            <a href="" class="dropdown-link fs-6 text-decoration-none ">QUẢN LÝ BÀI VIẾT</a>
+                                        </div>
                                     </div>
                                 </li>
                             }
@@ -151,7 +136,7 @@
                             {
 
                                 <li class="nav-item ">
-                                    <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quản trị Người dùng</a>
+                                    <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">QUẢN TRỊ NGƯỜI DÙNG</a>
                                     <div class="dropdown-menu">
                                         <div class="dropdown-item border-bottom p-3 menu-list">
                                             <i class="fa-solid fa-caret-right"></i>

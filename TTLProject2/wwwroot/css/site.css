@@ -77,3 +77,18 @@ body {
     color :gray;
     text-decoration:underline;
 }
+.layout_img {
+    background-image: url("~/asset/images/background1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.content
+{
+    height:450px;
+    overflow:auto;
+    width:100%;
+}
+.content ul li {
+    border-bottom: 1px solid gray;
+    padding : 10px 0px;
+}

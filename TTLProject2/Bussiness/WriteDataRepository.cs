@@ -81,6 +81,7 @@ namespace TTLProject2.Bussiness
                 _params.Add("@maTrangThai", hocSinhModel.MaTrangThai);
                 _params.Add("@maQuocTich", hocSinhModel.MaQuocTich);
                 _params.Add("@maLop", hocSinhModel.MaLop);
+                _params.Add("@email", hocSinhModel.Email);
                 var result = await db.ExecuteAsync("Create_hocSinh", _params, commandType: CommandType.StoredProcedure);
                 return result > 0;
             }

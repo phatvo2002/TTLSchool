@@ -44,5 +44,7 @@ namespace TTLProject2.Entities
 
         public string? TenTrangThai { get; set; }
 
+        public string? Email { get; set; }
+
     }
 }

@@ -163,6 +163,17 @@
 
 
 											</div>
+											<h4 class="mt-3">5. Thông tin tài khoản </h4>
+											<p><i>Lưu ý : Email của học sinh phải bắt đầu bằng "Mã Học Sinh"  + Đuôi ".student.gmail.com"</i></p>
+											<div class="row mt-3">
+												<div class="col-12 ">
+													<label for="" class="form-label">Email do nhà trường cấp </label>
+													<input type="Text" class="form-control" id="" autocomplete="TruongHoc1" aria-required="true" placeholder='Vd : VDP.studentgmail.com' asp-for="Email">
+													<span asp-validation-for="Email" class="text-danger"></span>
+												</div>
+												
+											</div>
+
 								   	</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -206,6 +217,7 @@
 																	<th class="border-0">Mã Học Sinh</th>
 																	<th class="border-0">Tên Học Sinh </th>
 																	<th class="border-0">Ngày Tháng Năm Sinh</th>
+																	<th class="border-0">Email</th>
 																	<th class="border-0">Số Điện Thoại </th>
 																	<th class="border-0">Giới tính</th>
 																	<th class="border-0">Lớp Học</th>
@@ -325,8 +337,9 @@
 							return '';
 						}
 					},
-					{ "data": "soDienThoai", "className": "text-center font-size-15", "orderable": false, "targets": 3 },
-					{ "data": "maGioiTinh", "className": "text-center font-size-15", "orderable": false, "targets": 4,
+					{ "data": "email", "className": "text-center font-size-15", "orderable": false, "targets": 3 },
+					{ "data": "soDienThoai", "className": "text-center font-size-15", "orderable": false, "targets": 4 },
+					{ "data": "maGioiTinh", "className": "text-center font-size-15", "orderable": false, "targets": 5,
 					  "render" : function(data){
 						  if (data == 1) {
 							  return "<span >Nam</span>"
@@ -340,9 +353,9 @@
 
 					  }
 					},
-					{ "data": "maLop", "className": "text-center font-size-15", "orderable": false, "targets": 5 },
-					{ "data": "diaChiNha", "className": "text-center font-size-15", "orderable": false, "targets": 6 },
-					{ "data": "maTrangThai", "className": "text-center font-size-15", "orderable": false, "targets": 7,
+					{ "data": "maLop", "className": "text-center font-size-15", "orderable": false, "targets": 6 },
+					{ "data": "diaChiNha", "className": "text-center font-size-15", "orderable": false, "targets": 7 },
+					{ "data": "maTrangThai", "className": "text-center font-size-15", "orderable": false, "targets": 8,
 						"render": function (data) {
 							if (data == 1)
 								return "<span class='badge bg-success'  >Đang Học</span>";
@@ -351,7 +364,7 @@
 						}
 					},
 					{
-						"targets": 8,
+						"targets": 9,
 						"data": "maHocSinh",
 						"orderable": false,
 						"render": function (data) {
@@ -380,6 +393,9 @@
 					"sInfoEmpty": "",
 					"sInfoFiltered": "(filtered from _MAX_ total records)"
 				},
+				"sScrollX": "100%",
+				"sScrollXInner": "110%",
+				"bScrollCollapse": true
 			})
 
 

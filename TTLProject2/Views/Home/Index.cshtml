@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using TTLProject2.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
     ViewData["Title"] = "Cổng Thông Tin Trường THPT Thạnh Lộc ";
 }
 
@@ -6,15 +10,101 @@
     <div class="row">
         <div class="col-12 position-relative">
             <img src="~/asset/images/banner.jpg" class="w-100"/>
-            <p class="fw-bold" style="position:absolute ; top:23%;left:33% ;font-size:2rem">CỔNG THÔNG TIN HỌC SINH </p>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
-                <a class="btn btn-danger p-3 " href="/Identity/Account/Login" style="border-radius:30px;position:absolute ; top:40%;left:35% ;width:150px;">ĐĂNG NHẬP </a>
-                <a class="btn btn-danger p-3 " href="/Identity/Account/Register" style="border-radius:30px;position:absolute ; top:40%;left:48%;width:150px;">ĐĂNG KÍ </a>
+              @if (SignInManager.IsSignedIn(User))
+            {
+                <p class="fw-bold" style="position:absolute ; top:46%;left:22% ;font-size:2rem">CHÀO MỪNG BẠN ĐẾN VỚI CỔNG THÔNG TIN </p>
+                <p class="fw-bold" style="position:absolute ; top:54%;left:22% ;font-size:2rem"> TRƯỜNG TRUNG HỌC PHỔ THÔNG THẠNH LỘC</p>
+            }
+            else
+            {
+                <p class="fw-bold" style="position:absolute ; top:23%;left:33% ;font-size:2rem">CỔNG THÔNG TIN HỌC SINH </p>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+                    <a class="btn btn-danger p-3 " href="/Identity/Account/Login" style="border-radius:30px;position:absolute ; top:40%;left:35% ;width:150px;">ĐĂNG NHẬP </a>
+                    <a class="btn btn-danger p-3 " href="/Identity/Account/Register" style="border-radius:30px;position:absolute ; top:40%;left:48%;width:150px;">ĐĂNG KÍ </a>
 
-            </div>
+                </div>
+            }
+          
         </div>
        
     </div>
+    <div class="container-sm mt-3 p-3">
+        <div class="row">
+            <div class="col-5">
+                <div>
+                    <img src="~/asset/images/news1.jpg" style="width:100%" />
+                    <h3 class="fw-bold mt-3" style="overflow:hidden; height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC</h3>
+                    <p>Đoàn viên, thanh niên là lực lượng tiên phong, cánh tay đắc lực và là niềm tin của Đảng”. Thực hiện lời dạy của Bác, em Nguyễn Thị Việt Hà - học...</p>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class=" " style="background-color:#C4ECF8">
+                    <p class="fw-bold p-2"><i class="fa-solid fa-wifi"></i> Bài Viết Mới Đăng</p>
+                </div>
+                <div class="content" >
+                    <ul style="list-style:none">
+                        <li class="row" >
+                            <div class="col-md-3" >
+                                <img src="~/asset/images/news1.jpg" style="width:100%;"/>
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                         <li class="row" >
+                            <div class="col-md-3" >
+                                <img src="~/asset/images/news1.jpg" style="width:100%;"/>
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                         <li class="row" >
+                            <div class="col-md-3" >
+                                <img src="~/asset/images/news1.jpg" style="width:100%;"/>
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                         <li class="row" >
+                            <div class="col-md-3" >
+                                <img src="~/asset/images/news1.jpg" style="width:100%;"/>
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                        <li class="row">
+                            <div class="col-md-3">
+                                <img src="~/asset/images/news1.jpg" style="width:100%;" />
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                         <li class="row" >
+                            <div class="col-md-3" >
+                                <img src="~/asset/images/news1.jpg" style="width:100%;"/>
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                        <li class="row">
+                            <div class="col-md-3">
+                                <img src="~/asset/images/news1.jpg" style="width:100%;" />
+                            </div>
+                            <div class="col-md-9" style="">
+                                <p class="mt-1" style="vertical-align: middle;height:90px;line-height:30px;">NIỀM VUI CỦA NỮ HỌC SINH TRƯỜNG THPT THẠNH LỘC KẾT NẠP ĐẢNG VIÊN Ở TUỔI 18</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   
     
 </div>
 

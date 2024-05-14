@@ -1,0 +1,220 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container-sm" style="font-family:'Times New Roman'">
+
+    <h3 class="pt-3 pb-3">Kết Quả Học Tập</h3>
+    <p id="hocki">Học Kì I năm học 2024 - 2025</p>
+    <table class="table table-bordered border-secondary" id="DiemThi">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã Môn Học</th>
+                <th scope="col">Điểm Miệng</th>
+                <th scope="col">Điểm Kt 15 phút lần 1</th>
+                <th scope="col">Điểm Kt 15 phút lần 2</th>
+                <th scope="col">Điểm kt 1 tiết</th>
+                <th scope="col">Điểm GK</th>
+                <th scope="col">Điểm Cuối kì </th>
+                <th scope="col">Điểm TB </th>
+            </tr>
+            
+        </thead>
+        
+    </table>
+    <table class="table table-bordered border-secondary" id="DiemThi">
+        <thead>
+            <tr>
+                <th scope="col" colspan="3" id="DiemTb">Điểm Trung Bình</th>
+                <th scope="col" colspan="4" id="Hocluc">Xếp Loại Học Lực Học Kì</th>
+            </tr>
+
+        </thead>
+    </table>
+
+    
+
+</div>
+
+<link rel="stylesheet" href="~/css/style.css" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css" rel="stylesheet" />
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+    <script src="~/js/datatables.js"></script>
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+
+            $.ajax({
+                type: "GET",
+                url: "/QuanLyThongTinHocSinh/GetListDiemHocSinh/",
+                data: { MaHocSinh: maHocSinh },
+
+                contentType: "application/json",
+                datatype: "json",
+                dataSrc: function (json) {
+
+                    console.log(json.data)
+                    return json.data;
+                },
+            })
+
+            $.urlParam = function (name) {
+                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (results == null) {
+                    return null;
+                }
+                return decodeURI(results[1]) || 0;
+            }
+
+            var maHocSinh = $.urlParam('MaHocSinh');
+            var DiemTb = $('#DiemTb');
+            var Hocluc = $('#Hocluc')
+
+            $("#DiemThi").dataTable({
+                "bInfo": false,
+                "responsive": false,
+                "autoWidth": false,
+                "ajax": {
+                    "type": "GET",
+                    "url": "/QuanLyThongTinHocSinh/GetListDiemHocSinh/",
+                    "data": { MaHocSinh: maHocSinh },
+
+                    "contentType": "application/json",
+                    "datatype": "json",
+                    "dataSrc": function (json) {
+                    
+                        return json.data;
+                    },
+
+                },
+                "columnDefs": [
+                    {
+                        "data": null, "orderable": false, "className": "text-center font-size-15", "targets": 0, "render": function (data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+                    { "data": "tenMonHoc", "className": "text-center font-size-15", "orderable": false, "targets": 1 },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 2,
+                        "render": function (data, type, row, meta) {
+                            if (row.maHocKiNamHoc === "1") {
+                                
+                                return "<p>" + row.diemKiemTraMieng.toFixed(2)+ "</p>"
+                           }
+                         }
+                    },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 3 ,
+                        "render": function (data, type, row, meta){
+                            if (row.maHocKiNamHoc === "1") {
+                                return "<p>" + row.diem15PhutLan1.toFixed(2) + "</p>"
+                            }
+                        }
+                    },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 4,
+                        "render": function (data, type, row, meta) {
+                            if (row.maHocKiNamHoc === "1") {
+                                return "<p>" + row.diem15PhutLan2.toFixed(2) + "</p>"
+                            }
+                        }
+                    },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 5,
+                        "render": function (data, type, row, meta)
+                        {
+                            if (row.maHocKiNamHoc === "1") {
+                                return "<p>" + row.diemKT1Tiet.toFixed(2) + "</p>"
+                            }
+                        }
+                    },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 6 ,
+                        "render": function (data, type, row, meta) {
+                            if (row.maHocKiNamHoc === "1") {
+                                return "<p>" + row.diemGk.toFixed(2) + "</p>"
+                            }
+                        }
+                    },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 7 ,
+                        "render": function (data, type, row, meta)
+                        {
+                            if (row.maHocKiNamHoc === "1") {
+                                return "<p>" + row.diemCk.toFixed(2) + "</p>"
+                            }
+                        }
+                    },
+                    { "data": null, "className": "text-center font-size-15", "orderable": false, "targets": 8 ,
+                        "render": function (data, type, row, meta)
+                        {
+                            if (row.maHocKiNamHoc === "1") {
+                                return "<p>" + row.diemTbHk + "</p>"
+                            }
+                        }
+                    },
+                ],
+                language: {
+                    search: '<i class="fa fa-search pos-abs mt-2 ml-3 text-blue-m2"  style="position: absolute; left: 57%; top: 3%; color:#0984e3"> </i>',
+                    searchPlaceholder: " Tra cứu ...",
+                    emptyTable: "Dữ liệu hiện tại chưa có...",
+                    zeroRecords: "Không tìm thấy dữ liệu...",
+                    loadingRecords: "<img src='/asset/images/loadingdata.gif' style='width: 40px; height: 40px;'/>",
+                    paginate: {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Tiếp theo",
+                        "previous": "Quay lại"
+                    }
+                },
+                oLanguage: {
+                    "sLengthMenu": "Hiển thị  _MENU_ mẫu tin",
+                    "sZeroRecords": "Nothing found - sorry",
+                    "sInfo": "Hiển thị  _START_ đến _END_ của _TOTAL_ mẫu tin",
+                    "sInfoEmpty": "",
+                    "sInfoFiltered": "(filtered from _MAX_ total records)"
+                },
+                searching: false,
+                paginate: false,
+                layout: {
+                    topStart: {
+                        buttons: [
+                            
+                            {
+                                extend: 'print',
+                                text: 'In bảng Điểm',
+                                messageTop:
+                                    'Bảng điểm Học kì 1 năm học 2024 -2025',
+                                title: 'Trường THPT Thạnh Lộc  ',
+                                
+                                messageBottom: null
+                            }
+                        ]
+                    }
+                }
+
+
+
+            })
+
+            var result = null;
+
+
+           
+        })
+    </script>
+}
+
