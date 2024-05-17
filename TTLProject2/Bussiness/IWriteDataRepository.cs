@@ -14,7 +14,7 @@ namespace TTLProject2.Bussiness
 
         Task<bool> UpdateHocSinh(HocSinhModel hocSinhModel);
 
-        Task<bool> InsertLopHoc(LopHocViewModel lopHocModel);
+        Task<bool> InsertLopHoc(LopHoc lopHocModel);
 
         Task<bool> InsertThiSinh(DangKiViewModel dangkiModel);
 

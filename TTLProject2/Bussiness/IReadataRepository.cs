@@ -57,6 +57,8 @@ namespace TTLProject2.Bussiness
 
         Task<HocSinhModel> GetHocSinhByID(string id);
 
+        Task<HocSinhModel> GetHocSinhAllThongtinByID(string id);
+
         Task<IEnumerable<HocSinh>> GetHocSinh10a1();
 
 

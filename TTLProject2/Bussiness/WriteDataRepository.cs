@@ -28,8 +28,9 @@ namespace TTLProject2.Bussiness
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                
-                return await db.QueryAsync<LopHoc>("delete_lophoc_by_maLopHoc", new {Malop = maLop }, commandType: CommandType.StoredProcedure);
+                DynamicParameters _params = new DynamicParameters();
+                _params.Add("@maLopHoc", maLop);
+                return await db.QueryAsync<LopHoc>("delete_lophoc_by_maLopHoc", _params, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -87,18 +88,19 @@ namespace TTLProject2.Bussiness
             }
         }
 
-        public async Task<bool> InsertLopHoc(LopHocViewModel lopHocModel)
+        public async Task<bool> InsertLopHoc(LopHoc lopHocModel)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 DynamicParameters _params = new DynamicParameters();
-                _params.Add("@maLop", lopHocModel.MaLopHoc);
-                _params.Add("@tenLop", lopHocModel.TenLopHoc);
+                _params.Add("@maLop", lopHocModel.MaLop);
+                _params.Add("@tenLop", lopHocModel.HoTen);
                 _params.Add("@siSo", lopHocModel.SiSo);
                 _params.Add("@hocNgoaiNgu", lopHocModel.HocNgoaiNgu);
                 _params.Add("@maNienKhoa", lopHocModel.MaNienKhoa);
                 _params.Add("@maKhoi", lopHocModel.MaKhoi);
                 _params.Add("@maGiaoVien", lopHocModel.MaGiaoVien);
+                _params.Add("@thoiKhoaBieu", lopHocModel.ThoiKhoaBieu);
                 var result = await db.ExecuteAsync("Create_lop", _params, commandType: CommandType.StoredProcedure);
                 return result > 0;
             }

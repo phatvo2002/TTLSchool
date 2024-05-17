@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.IO;
 using System.Runtime.InteropServices;
 using TTLProject2.Bussines;
 using TTLProject2.Bussiness;
@@ -177,81 +178,137 @@ namespace TTLProject2.Controllers
 		}
 
 
-		[HttpPost]
-		public async Task<IActionResult> ThemMoiLopHoc(LopHocViewModel model)
-		{
+        //[HttpPost]
+        //public async Task<IActionResult> ThemMoiLopHoc()
+        //{
+        //          LopHocViewModel model = new LopHocViewModel();
+        //          try
+        //          {
+
+        //                 ViewData["Tab"] = "QuanTri";
+        //                 ViewBag.isvalid = true;
+        //		    LopHoc lopHoc = new LopHoc();
+        //              //var lopHoc = _mapper.Map<LopHoc>(model);
+        //                  lopHoc.MaLop = model.MaLop;
+        //                  lopHoc.TenLop = model.TenLop;
+        //                  lopHoc.MaKhoi = model.MaKhoi;
+        //                  lopHoc.SiSo = model.SiSo;
+        //                  lopHoc.HocNgoaiNgu = model.HocNgoaiNgu;
+        //                  lopHoc.MaNienKhoa = model.MaNienKhoa;
+        //                  lopHoc.MaGiaoVien = model.MaGiaoVien;
+        //                  var path = $"{_hostingEnvironment.WebRootPath}\\files\\{DateTime.Now.Year}";
+        //                  lopHoc.ThoiKhoaBieu = await Apphelper.SaveFile($"{path}\\images", model.ThoiKhoaBieu.FileName, model.ThoiKhoaBieu.OpenReadStream());
+
+        //              try
+        //                  {
+        //                  bool result;
+        //                  string errorMessage = "";
+        //                  string sucessMessage = "";
+        //                  if (await _readataRepository.CheckLopHocExist(lopHoc.MaLop, model.TenLop) )
+        //                  {
+        //                      errorMessage = "Lớp Học đã tồn tại , vui lòng kiểm tra lại thông tin vừa nhập ";
+        //                      result = false;
+        //                      ViewBag.Error = errorMessage;
+        //                  }
+        //                  else if (await _readataRepository.CheckLopHoExistByMagiaovien(lopHoc.MaGiaoVien))
+        //                  {
+        //				errorMessage = "Giáo viên này đã có lớp xin vui lòng chọn giáo viên khác ";
+        //				result = false; 
+        //				ViewBag.Error = errorMessage;
+        //			}    
+        //                  else
+        //                  {
+
+        //                      result = await _writeDataRepository.InsertLopHoc(lopHoc);
+        //                      sucessMessage = "Thêm Lớp Học Thành Công";
+        //                      errorMessage = "Thêm Thất Bại";
+        //                      if(result)
+        //                      {
+        //                          ViewBag.Success = sucessMessage;
+        //                      }else
+        //                      {
+        //                          ViewBag.Error = errorMessage;
+        //                      }    
+
+        //                  }
+        //                  }
+        //                  catch(Exception ex)
+        //                   {
+        //                      ViewBag.Error = ex.Message;
+        //                   }
+
+
+        //          }
+        //          catch (Exception ex)
+        //          {
+        //              ModelState.AddModelError(string.Empty, ex.Message);
+        //          }
+
+
+        //          return Json(new {success = ViewBag.Success , error = ViewBag.Error }) ;
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> ThemMoiLopHoc(LopHocViewModel model)
+        {
+            ViewData["Tab"] = "QuanTri";
+            ViewBag.isvalid = true;
+
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = false, error = "Dữ liệu không hợp lệ" });
+            }
+
+            var lopHoc = new LopHoc
+            {
+                MaLop = model.MaLop,
+                TenLop = model.TenLop,
+                MaKhoi = model.MaKhoi,
+                SiSo = model.SiSo,
+                HocNgoaiNgu = model.HocNgoaiNgu,
+                MaNienKhoa = model.MaNienKhoa,
+                MaGiaoVien = model.MaGiaoVien
+            };
+
             try
             {
-                   ViewData["Tab"] = "QuanTri";
-                   ViewBag.isvalid = true;
-                    //var lopHoc = _mapper.Map<LopHoc>(model);
-                    model.MaLopHoc = model.MaLopHoc;
-                    model.TenLopHoc = model.TenLopHoc;
-                    model.MaKhoi = model.MaKhoi;
-                    model.SiSo = model.SiSo;
-                    model.HocNgoaiNgu = model.HocNgoaiNgu;
-                    model.MaNienKhoa = model.MaNienKhoa;
-                    model.MaGiaoVien = model.MaGiaoVien;
-
-                   
-                    try
-                    {
-                    bool result;
-                    string errorMessage = "";
-                    string sucessMessage = "";
-                    if (await _readataRepository.CheckLopHocExist(model.MaLopHoc, model.TenLopHoc) )
-                    {
-                        errorMessage = "Lớp Học đã tồn tại , vui lòng kiểm tra lại thông tin vừa nhập ";
-                        result = false;
-                        ViewBag.Error = errorMessage;
-                    }
-                    else if (await _readataRepository.CheckLopHoExistByMagiaovien(model.MaGiaoVien))
-                    {
-						errorMessage = "Giáo viên này đã có lớp xin vui lòng chọn giáo viên khác ";
-						result = false; 
-						ViewBag.Error = errorMessage;
-					}    
-                    else
-                    {
-
-                        result = await _writeDataRepository.InsertLopHoc(model);
-                        sucessMessage = "Thêm Lớp Học Thành Công";
-                        errorMessage = "Thêm Thất Bại";
-                        if(result)
-                        {
-                            ViewBag.Success = sucessMessage;
-                        }else
-                        {
-                            ViewBag.Error = errorMessage;
-                        }    
-                     
-                    }
-                    }
-                    catch(Exception ex)
-                     {
-                        ViewBag.Error = ex.Message;
-                     }
-                
-                
+                var path = $"{_hostingEnvironment.WebRootPath}\\files\\{DateTime.Now.Year}";
+                lopHoc.ThoiKhoaBieu = await Apphelper.SaveFile($"{path}\\images", model.ThoiKhoaBieu.FileName, model.ThoiKhoaBieu.OpenReadStream());
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, ex.Message);
+                return Json(new { success = false, error = $"Lỗi khi lưu file: {ex.Message}" });
             }
-         
-            var nienKhoa = new List<NienKhoa>();
-            nienKhoa.AddRange(await _readataRepository.GetNienKhoa());
-            model.DanhSachNienKhoa = new SelectList(nienKhoa, "MaNienKhoa", "TenNienKhoa");
 
-            var khoi = new List<Khoi>();
-            khoi.AddRange(await _readataRepository.GetKhois());
-            model.DanhSachKhoi = new SelectList(khoi, "MaKhoi", "TenKhoi");
+            try
+            {
+                if (await _readataRepository.CheckLopHocExist(lopHoc.MaLop, model.TenLop))
+                {
+                    return Json(new { success = false, error = "Lớp học đã tồn tại, vui lòng kiểm tra lại thông tin vừa nhập." });
+                }
 
-            var giaoVien = new List<GiaoVien>();
-            giaoVien.AddRange(await _readataRepository.GetGiaoViens());
-            model.DanhSachGiaoVien = new SelectList(giaoVien, "MaGiaoVien", "HoTen");
-            return Json(new {success = ViewBag.Success , error = ViewBag.Error }) ;
-		}
+                if (await _readataRepository.CheckLopHoExistByMagiaovien(lopHoc.MaGiaoVien))
+                {
+                    return Json(new { success = false, error = "Giáo viên này đã có lớp, vui lòng chọn giáo viên khác." });
+                }
+
+                var result = await _writeDataRepository.InsertLopHoc(lopHoc);
+
+                if (result)
+                {
+                    return Json(new { success = true, message = "Thêm lớp học thành công." });
+                }
+                else
+                {
+                    return Json(new { success = false, error = "Thêm lớp học thất bại." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, error = $"Lỗi khi thêm lớp học: {ex.Message}" });
+            }
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> getAllLopHoc()
@@ -272,6 +329,12 @@ namespace TTLProject2.Controllers
                 return Json(new { success = false, message = "delete failed" });
             }
         }
+
+		public async Task<IActionResult> EditLopHoc()
+		{
+
+			return View();
+		}	
 
 
         //-------------------Quản Lý Giáo Viên--------
@@ -332,7 +395,7 @@ namespace TTLProject2.Controllers
 				    giaoVien.CCCD = model.CCCD;
 			     	giaoVien.Password = model.Password;
 					var path = $"{_hostingEnvironment.WebRootPath}\\files\\{DateTime.Now.Year}";
-			   	   giaoVien.HinhAnh= await Apphelper.SaveFile($"{path}\\images", model.HinhAnh.FileName, model.HinhAnh.OpenReadStream());
+			   	    giaoVien.HinhAnh= await Apphelper.SaveFile($"{path}\\images", model.HinhAnh.FileName, model.HinhAnh.OpenReadStream());
 
 					bool result;
 					string errorMessage = "";

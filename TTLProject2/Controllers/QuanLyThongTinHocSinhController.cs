@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TTLProject2.Bussiness;
 using TTLProject2.Entities;
 using TTLProject2.Models;
 
 namespace TTLProject2.Controllers
 {
+	[Authorize]
     public class QuanLyThongTinHocSinhController : Controller
     {
 		private readonly IReadataRepository _readataRepository;
@@ -39,5 +41,13 @@ namespace TTLProject2.Controllers
 			var result = await _readataRepository.GetDiemThiByMaHocSinh(MaHocSinh);
 			return Json(new {data = result});
 		}
+
+		public async Task<IActionResult> ChiTietHocSinh(string MaHocSinh)
+		{
+            HocSinhModel model = new HocSinhModel();
+            model = await _readataRepository.GetHocSinhAllThongtinByID(MaHocSinh);
+            return View(model);
+		}
+
     }
 }

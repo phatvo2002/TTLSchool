@@ -1,0 +1,109 @@
+﻿@model TTLProject2.Models.HocSinhModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container-sm">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/asset/images/user.png"/>
+            <p>Mã Học Sinh : <span class="fw-bold">@Model.MaHocSinh</span></p>
+            <p>Họ Tên : <span class="fw-bold">@Model.HoTen</span></p>
+            @if(Model.MaGioiTinh == 1)
+            {
+                <p>Giới Tính : <span class="fw-bold">Nam</span></p>
+            }
+            else
+            {
+                <p>Giới Tính : <span class="fw-bold">Nữ</span></p>
+            }
+        </div>
+        <div class="col-md-8">
+            <h3 class="pt-2 pb-2 mt-4 border-bottom">1. Thông tin học vấn </h3>
+            <table class="table mt-5">
+            <thead>
+               </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="fw-bold">Mã Lớp Học :</span> @Model.MaLop</td>
+                    <td><span class="fw-bold">Tên Lớp :</span> @Model.TenLop</td>
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Email  :</span> @Model.Email</td>
+                    <td><span class="fw-bold">Học Ngoại ngữ :</span>@Model.HocNgoaiNgu</td>
+                </tr>
+             
+
+            </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <div class="row">
+        <h3 class="pt-2 pb-2 mt-4 border-bottom">2. Thông tin cá nhân </h3> 
+        <table class="table mt-5">
+            <thead>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="fw-bold">Ngày Sinh  :</span> @Model.NgaySinh</td>
+                    <td><span class="fw-bold">Số điện thoại :</span> @Model.SoDienThoai</td>
+                </tr>
+                <tr>
+                    <td>
+                        @if(Model.MaDanToc ==1)
+                        {
+                        <span><span class="fw-bold">Dân Tộc  :</span> Kinh </span>
+                        }
+                        else
+                        {
+                         <span><span class="fw-bold">Dân Tộc  :</span> Khác </span>
+                        }
+                    </td>
+                    <td>
+                        @if (Model.MaQuocTich == 1)
+                        {
+                        <span><span class="fw-bold">Quốc Tịch   :</span> Việt Nam </span>
+                        }
+                        else
+                        {
+                        <span><span class="fw-bold">Quốc Tịch   :</span> Khác </span>
+                        }
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Địa chỉ nhà  :</span> @Model.DiaChiNha</td>
+                    <td><span class="fw-bold">Trường trung học cơ sở :</span> @Model.TruongHoc2</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h3 class="pt-2 pb-2 mt-4 border-bottom">3. Quan Hệ Gia Đình</h3>
+        <table class="table mt-5">
+            <thead>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="fw-bold">Họ Tên Cha:</span> @Model.HoTenBo</td>
+                    <td><span class="fw-bold">Nghề Nghiệp   :</span> @Model.NgheNghiep1</td>
+                    <td><span class="fw-bold">Số Điện Thoại   :</span> @Model.SoDienThoaiBa</td>
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Họ Tên Mẹ:</span> @Model.HoTenMe</td>
+                    <td><span class="fw-bold">Nghề Nghiệp   :</span> @Model.NgheNghiep2</td>
+                    <td><span class="fw-bold">Số Điện Thoại   :</span> @Model.SoDienThoaiMe</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

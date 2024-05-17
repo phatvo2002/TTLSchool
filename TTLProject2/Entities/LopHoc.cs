@@ -8,7 +8,7 @@
 
         public int MaKhoi { get; set; }
 
-        public int MaGiaoVien {  get; set; }
+        public string? MaGiaoVien {  get; set; }
 
         public string? TenLop { get; set; }
 
@@ -23,6 +23,8 @@
         public string? TenNienKhoa { get; set; }
 
         public string? HoTen {  get; set; }
+
+        public string? ThoiKhoaBieu { get; set; }
 
 
     }

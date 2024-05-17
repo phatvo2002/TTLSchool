@@ -1,0 +1,140 @@
+﻿@model TTLProject2.Models.HocSinhModel
+@using TTLProject2.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form id="updateHocSinh">
+	<div class='contentpane'>
+		<div class='container'>
+			<div id="dnn_ContentPane">
+				<div class="DnnModule DnnModule-ThacsyOnline DnnModule-484">
+					<a name="484"></a>
+					<div class="etep-1">
+						<div class='container-header p-3'>
+							<h2>
+								<span id="dnn_ctr484_dnnTITLE_titleLabel" class="title">CẬP NHẬT THÔNG TIN LỚP HỌC </span>
+							</h2>
+						</div>
+						<div class='container-content'>
+							<div id="dnn_ctr484_ContentPane">
+								<!-- Start_Module_484 --><div id="dnn_ctr484_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
+									<div id="dnn_ctr484_View_pnlContainer">
+
+
+										<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+										<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+										<style>
+											.DKForm {
+												margin: 20px auto;
+												padding: 10px 20px;
+												border: 1px dashed #ddd;
+											}
+
+											.lbl-item {
+												font-size: 11px;
+											}
+
+											.inputdk {
+												display: block;
+												width: 100%;
+												height: calc(2.25rem + 2px);
+												line-height: 1.5;
+												color: #495057;
+												background-color: #fff;
+												background-clip: padding-box;
+												border: 1px solid #ced4da;
+												border-radius: 0.25rem;
+												margin-bottom: 1rem;
+											}
+
+											h2, h3 {
+												font-size: 22px;
+												font-family: Arial, Helvetica, sans-serif;
+												font-weight: bold;
+											}
+
+											.label {
+												font-weight: bold;
+												font-size: 15px;
+											}
+
+											.required {
+												color: red;
+											}
+
+											.ngay {
+												width: 33%;
+												display: inline;
+											}
+
+											.thang {
+												width: 33%;
+												display: inline;
+											}
+
+											.nam {
+												width: 30%;
+												display: inline;
+											}
+										</style>
+										<body>
+											<div id="dnn_ctr484_View_Register_countdown" style="color: red; font-size: 20px"></div>
+											<div id="hide">
+												<div class="DKForm">
+													<div class="text-center" style="display:none">
+														<h4>TRƯỜNG TRUNG HỌC PHỔ THÔNG THẠNH LỘC</h4>
+														<h6>CHỈNH SỬA THÔNG TIN LỚP HỌC </h6>
+													</div>
+													<div class="row">
+														
+														
+														<div class="col-md-4 col-sm-12 col-xs-12">
+															<label  class="label">Mã Lớp Học (<span class="required">*</span>)</label>
+															<input class="form-control" />
+															
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12">
+															<label >Giáo Viên Chủ Nhiệm (<span class="required">*</span>)</label>
+															<div class="col-12">
+																<select  class="select2 form-control">
+																	<option value="">Năm</option>
+																</select>
+																
+															</div>
+														</div>
+														<div class="col-md-4 col-sm-12 col-xs-12">
+															<label class="label">Số Lượng (<span class="required">*</span>)</label>
+															<input class="form-control" />
+
+														</div>
+														
+														<button type="submit" class="btn btn-primary p-2 mt-3">Cập nhật thông tin </button>
+
+													</div>
+												</div>
+										</body>
+									</div>
+								</div><!-- End_Module_484 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+	<script src="~/js/datatables.js"></script>
+	<script src="~/lib/moment/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script>
+	
+	</script>
+}

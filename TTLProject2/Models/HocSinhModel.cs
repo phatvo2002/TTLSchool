@@ -78,6 +78,12 @@ namespace TTLProject2.Models
 
 		public string? Email { get; set; }
 
+		public string? MaLopHoc {  get; set; }
+
+		public string? HocNgoaiNgu { get; set; }
+
+		public string? TenLop {  get; set; }
+
 		public SelectList? DanhsachLopHoc { get; set; }
 
 		public SelectList? DanhSachDanToc { get; set; }
