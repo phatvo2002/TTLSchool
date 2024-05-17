@@ -32,5 +32,19 @@ namespace TTLProject2.Controllers
 
 			return Json(new { data = result });
 		}
+
+		public IActionResult TraCuuLopHoc()
+		{
+			return View();
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> TraCuuThongTinLopHoc(string tenHocSinh)
+		{
+
+			var result = await _readataRepository.GetThongTinHocSinhByLopHoc(tenHocSinh);
+
+			return Json(new { data = result });
+		}
 	}
 }

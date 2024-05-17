@@ -447,5 +447,15 @@ namespace TTLProject2.Bussiness
 				return await db.QuerySingleOrDefaultAsync<HocSinhModel>("get_hocSinh_by_email", _params, commandType: CommandType.StoredProcedure);
 			}
 		}
+
+		public async Task<IEnumerable<TraCuuLopHocViewModel>> GetThongTinHocSinhByLopHoc(string tenHocSinh)
+		{
+			using (IDbConnection db = new SqlConnection(_connectionString))
+			{
+				var _params = new DynamicParameters();
+				_params.Add("@hoTen", tenHocSinh);
+				return await db.QueryAsync<TraCuuLopHocViewModel>("get_hocSinh_bylopHoc", _params, commandType: CommandType.StoredProcedure);
+			}
+		}
 	}
 }

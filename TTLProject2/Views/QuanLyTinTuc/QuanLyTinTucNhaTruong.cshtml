@@ -1,0 +1,99 @@
+﻿
+@using Microsoft.AspNetCore.Mvc
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Quản Lý Tin Tức";
+}
+<h1 class="p-3 mt-2">Quản Lý Bài Viết</h1>
+
+
+<!--Datatable-->
+<div id="dnn_ctr496_ContentPane" style="position:relative">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position:absolute;left:80%;top:5%;z-index:1000;border-radius:50px;">
+        <i class="fa-solid fa-plus"></i>
+        Thêm Mới
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm Mới Bài Viết </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="quanLyLopHoc" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="" class="form-label">Tiêu Đề Tin Tức </label>
+                                <input type="text" class="form-control" id="" autocomplete="MaLopHoc" aria-required="true" placeholder="" >
+                            </div>
+                            <div class="col-12">
+                                <label for="" class="form-label">Mô Tả Tin tức  </label>
+                                <input type="text" class="form-control" id="" autocomplete="MaLopHoc" aria-required="true" placeholder="">
+                            </div>
+                            <div class="col-12">
+                                <label for="" class="form-label">Nội Dung Tin Tức </label>
+                                <div>
+                                 <textarea class="col-md-12 p-3" rows="30" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End modal-->
+    <button type="button" class="btn btn-danger" id="delete-btn" style="position:absolute;left:90%;top:5%;z-index:1000;border-radius:50px;">
+        <i class="fa-solid fa-trash"></i>
+        Xóa
+    </button>
+    <!-- Start_Module_484 --><div id="dnn_ctr496_ModuleContent" class="DNNModuleContent ModThacsyOnlineC">
+        <div id="dnn_ctr496_View_pnlContainer">
+            <style>
+                .DKForm {
+                    margin: 20px auto;
+                    padding: 10px 20px;
+                    border: 1px dashed #ddd;
+                }
+            </style>
+            <body>
+                <div id="">
+                    <div class="DKForm">
+                        <div class="row mt-5" >
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <table id="lophoctables" class="table table-striped " style="min-width: max-content;">
+                                    <thead class="text-secondary-m2 bg-tbl-header ">
+                                        <tr class="text-white">
+                                            <th class="border-0">Tiêu Đề  </th>
+                                            <th class="border-0">Mô Tả </th>
+                                            <th class="border-0">Hình Ảnh </th>
+                                            <th class="border-0">Ngày Tạo</th>
+                                            <th class="border-0">Nội Dung </th>
+                                            <th class="border-0">Lượt xem</th>
+                                            <th class="border-0">Tác Giả </th>
+                                            <th class="border-0 tbl-column-130"><i class="fa fa-cog"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+    </div>
+</div>
+<!--End Datatables-->
+<link rel="stylesheet" href="~/css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
