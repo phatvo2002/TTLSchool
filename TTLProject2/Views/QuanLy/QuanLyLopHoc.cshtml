@@ -6,7 +6,7 @@
 @{
     ViewData["Title"] = "Quản Lý Lớp Học";
 }
-<h1>Quản Lý Lớp Học</h1>
+<h4 class="text-center fw-bold p-4">Quản Lý Lớp Học</h4>
 
 
 <!--Datatable-->
@@ -21,8 +21,9 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm Mới Lớp Học</h5>
+                <div class="modal-header p-2" style="background-color: #3c8dbc; color:white;">
+                    <img src="~/asset/images/logo-school.png" style="width:80px;border-radius:50%" />
+                    <h5 class="modal-title p-2" id="exampleModalLabel">Thêm Mới Lớp Học</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="quanLyLopHoc" method="post"  enctype="multipart/form-data">
@@ -78,9 +79,9 @@
                         </div>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                    <div class="modal-footer" style="background-color: #3c8dbc">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Thêm Mới</button>
                     </div>
                 </form>
             </div>
