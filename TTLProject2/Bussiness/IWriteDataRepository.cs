@@ -16,7 +16,7 @@ namespace TTLProject2.Bussiness
 
         Task<bool> InsertLopHoc(LopHoc lopHocModel);
 
-        Task<bool> InsertThiSinh(DangKiViewModel dangkiModel);
+        Task<bool> InsertThiSinh(ThiSinh dangkiModel);
 
         Task<bool> InsertDiemThiSinh(DiemThiModel diem );
 

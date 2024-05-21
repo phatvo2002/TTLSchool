@@ -21,9 +21,15 @@
                             <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="dropdown-link fs-6 text-decoration-none text-black" style="font-family:'Times New Roman'">Thông tin Tài Khoản </a>
                         </div>
                         
-                        <div class="dropdown-item border-bottom p-3 menu-list">
+                        <div class="dropdown-item border-bottom p-3 menu-list " style="display:flex">
+                            <div class="mt-2"> 
+
                             <i class="fa-solid fa-lock text-black"></i>
-                            <a href="#" class="dropdown-link fs-6 text-decoration-none text-black" style="font-family:'Times New Roman'">Đổi mật khẩu  </a>
+                            </div>
+                            <div>
+
+                            <a class="nav-link dropdown-link  fs-6 text-black" style="font-family:'Times New Roman'" id="change-password" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">Đổi Mật Khẩu </a>
+                            </div>
                         </div>
                         <div class="dropdown-item border-bottom p-3 menu-list">
                             <form id="" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

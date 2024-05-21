@@ -26,6 +26,7 @@
     <header >
         <div class="container-fluid" style="padding: 0 ; margin: 0;">
             <img src="~/asset/images/panner-school-2.png" style="width:100%" />
+          
         </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow " style="padding:0;margin:0;background-color:#1bb6ee">
             <div class="container-lg" style="">
@@ -42,13 +43,13 @@
                     <ul class="navbar-nav flex-grow-1 " style="font-size:1.2rem;" >
                         <li class="nav-item">
                             
-                            <a class="nav-link text-white fs-6"  asp-area="" asp-controller="Home" asp-action="Index">TRANG CHỦ</a>
+                            <a class="nav-link text-white fs-6"  asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i> TRANG CHỦ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white fs-6" asp-area="" asp-controller="Home" asp-action="Privacy">GIỚI THIỆU</a>
+                            <a class="nav-link text-white fs-6" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-brands fa-readme"></i> GIỚI THIỆU</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TIN TỨC</a>
+                            <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa-regular fa-newspaper"></i> TIN TỨC</a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-item border-bottom p-3 menu-list">
                                     <i class="fa-solid fa-caret-right"></i>
@@ -61,29 +62,29 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white fs-6" asp-controller="DangKy" asp-action="Index">TUYỂN SINH 10</a>
+                            <a class="nav-link text-white fs-6" asp-controller="DangKy" asp-action="Index"><i class="fa-solid fa-graduation-cap"></i> TUYỂN SINH 10</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TRA CỨU</a>
+                            <a href="#" class="nav-link text-white fs-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-list"></i>TÍNH NĂNG  </a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-item border-bottom p-3 menu-list">
-                                    <i class="fa-solid fa-caret-right"></i>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                                     <a class="dropdown-link fs-6 text-decoration-none " asp-controller="TraCuu" asp-action="Index">TRA CỨU ĐIỂM THI</a>
                                 </div>
 
-                                <div class="dropdown-item border-bottom p-3 menu-list">
-                                    <i class="fa-solid fa-caret-right"></i>
-                                    <a href="" class="dropdown-link fs-6 text-decoration-none ">TRA CỨU ĐIỂM THI HỌC SINH GIỎI</a>
-                                </div>
+                               
                                 <div class="dropdown-item border-bottom p-3  menu-list">
-                                    <i class="fa-solid fa-caret-right"></i>
+                                    <i class="fa-solid fa-school"></i>
                                     <a asp-controller="TraCuu" asp-action="TraCuuLopHoc" class="dropdown-link fs-6 text-decoration-none ">TRA CỨU LỚP HỌC </a>
                                 </div>
                                 <div class="dropdown-item border-bottom p-3 menu-list">
-                                    <i class="fa-solid fa-caret-right"></i>
-                                    <a href="" class="dropdown-link fs-6 text-decoration-none ">TRA CỨU HỌC PHÍ</a>
+                                    <i class="fa-solid fa-spell-check"></i>
+                                    <a asp-controller="Dictionary" asp-action="index" class="dropdown-link fs-6 text-decoration-none ">TỪ ĐIỂN TIẾNG ANH </a>
                                 </div>
-
+                                <div class="dropdown-item border-bottom p-3 menu-list">
+                                    <i class="fa-solid fa-temperature-three-quarters"></i>
+                                    <a href="" class="dropdown-link fs-6 text-decoration-none ">DỰ BÁO THỜI TIẾT </a>
+                                </div>
                             </div>
                         </li>
                        
@@ -101,27 +102,27 @@
                                     <div class="dropdown-menu">
                                         <div class="dropdown-item border-bottom p-3 menu-list">
                                             <i class="fa-solid fa-caret-right"></i>
-                                            <a href="" class="dropdown-link fs-6 text-decoration-none " >QUẢN LÝ THÍ SINH ĐĂNG KÝ</a>
+                                            <a href="" class="dropdown-link fs-6 text-decoration-none " ><i class="fa-solid fa-list-check"></i> QUẢN LÝ THÍ SINH ĐĂNG KÝ</a>
                                         </div>
                                         <div class="dropdown-item border-bottom p-3 menu-list">
-                                            <i class="fa-solid fa-caret-right"></i>
-                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="QuanLyHocSinh">QUẢN LÝ HỌC SINH</a>
+                                            <i class="fa-solid fa-users"></i>
+                                            <a class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="QuanLyHocSinh"> QUẢN LÝ HỌC SINH</a>
                                         </div>
                                         <div class="dropdown-item border-bottom p-3  menu-list">
-                                            <i class="fa-solid fa-caret-right"></i>
-                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="QuanLyLopHoc">QUẢN LÝ LỚP HỌC  </a>
+                                            <i class="fa-solid fa-users-line"></i>
+                                            <a class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="QuanLyLopHoc"> QUẢN LÝ LỚP HỌC  </a>
                                         </div>
                                         <div class="dropdown-item border-bottom p-3 menu-list">
-                                            <i class="fa-solid fa-caret-right"></i>
-                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="GiaoVien">QUẢN LÝ GIÁO VIÊN</a>
+                                            <i class="fa-solid fa-users-gear"></i>
+                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLy" asp-action="GiaoVien">  QUẢN LÝ GIÁO VIÊN</a>
                                         </div>
                                         <div class="dropdown-item border-bottom p-3  menu-list">
-                                            <i class="fa-solid fa-caret-right"></i>
-                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLyDiem" asp-action="DanhSachDiemHocSinh">QUẢN LÝ ĐIỂM </a>
+                                            <i class="fa-solid fa-file-import"></i>
+                                            <a  class="dropdown-link fs-6 text-decoration-none " asp-controller="QuanLyDiem" asp-action="DanhSachDiemHocSinh"> QUẢN LÝ ĐIỂM </a>
                                         </div>
                                         <div class="dropdown-item border-bottom p-3 menu-list">
-                                            <i class="fa-solid fa-caret-right"></i>
-                                            <a asp-controller="QuanLyTinTuc" asp-action="QuanLyTinTucNhaTruong" class="dropdown-link fs-6 text-decoration-none ">QUẢN LÝ BÀI VIẾT</a>
+                                            <i class="fa-regular fa-file-lines"></i>
+                                            <a asp-controller="QuanLyTinTuc" asp-action="QuanLyTinTucNhaTruong" class="dropdown-link fs-6 text-decoration-none "> QUẢN LÝ BÀI VIẾT</a>
                                         </div>
                                     </div>
                                 </li>

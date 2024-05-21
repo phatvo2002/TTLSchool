@@ -157,7 +157,7 @@ namespace TTLProject2.Bussiness
 			}
 		}
 
-        public async Task<bool> InsertThiSinh(DangKiViewModel dangkiModel)
+        public async Task<bool> InsertThiSinh(ThiSinh dangkiModel)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -187,20 +187,21 @@ namespace TTLProject2.Bussiness
                 _params.Add("@diemTbm9", dangkiModel.DiemTb9);
                 _params.Add("@hanhKiem9", dangkiModel.HanhKiem9);
                 _params.Add("@hocLuc9", dangkiModel.HocLuc9);
-                _params.Add("@hoTenBo", dangkiModel.HoTenBo);
-                _params.Add("@ngheNghiepBo", dangkiModel.NgheNghiepBo);
-                _params.Add("@soDienThoaiBo", dangkiModel.SoDienThoaiBo);
-                _params.Add("@hoTenMe", dangkiModel.HoTenMe);
-                _params.Add("@ngheNghiepMe", dangkiModel.NgheNghiepMe);
-                _params.Add("@soDienThoaiMe", dangkiModel.SoDienThoaiMe);
-                _params.Add("@diaChiThuongTru", dangkiModel.DiaChiThuongTru);
-                _params.Add("@diaChiHienTai", dangkiModel.DiaChiHienTai);
                 _params.Add("@diemThiTsToan", dangkiModel.DiemThiTsToan);
                 _params.Add("@diemThiTsNguVan", dangkiModel.DiemThiTsNguVan);
                 _params.Add("@diemThiTsTiengAnh", dangkiModel.DiemThiTsTiengAnh);
                 _params.Add("@tongDiem", dangkiModel.TongDiem);
                 _params.Add("@diaChiNhan", dangkiModel.DiaChiNhan);
                 _params.Add("@hinhAnh", dangkiModel.HinhAnh);
+                _params.Add("@diaChiThuongTru", dangkiModel.DiaChiThuongTru);
+                _params.Add("@diaChiHienTai", dangkiModel.DiaChiHienTai);
+                _params.Add("@hoTenBo", dangkiModel.HoTenBo);
+                _params.Add("@hoTenMe", dangkiModel.HotTenMe);
+                _params.Add("@ngheNghiepBo", dangkiModel.NgheNghiepBo);
+                _params.Add("@ngheNghiepMe", dangkiModel.NgheNghiepMe);
+                _params.Add("@soDienThoaiBo", dangkiModel.SoDienThoaiBo);
+                _params.Add("@soDienThoaiMe", dangkiModel.SoDienThoaiMe);
+               
                 var result = await db.ExecuteAsync("regist_ThiSinh", _params, commandType: CommandType.StoredProcedure);
                 return result > 0;
             }
