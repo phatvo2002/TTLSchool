@@ -102,7 +102,7 @@
                                     <div class="dropdown-menu">
                                         <div class="dropdown-item border-bottom p-3 menu-list">
                                             <i class="fa-solid fa-caret-right"></i>
-                                            <a href="" class="dropdown-link fs-6 text-decoration-none " ><i class="fa-solid fa-list-check"></i> QUẢN LÝ THÍ SINH ĐĂNG KÝ</a>
+                                            <a asp-controller="DangKy" asp-action="QuanLyThiSinhDangKy" class="dropdown-link fs-6 text-decoration-none "><i class="fa-solid fa-list-check"></i> QUẢN LÝ THÍ SINH ĐĂNG KÝ</a>
                                         </div>
                                         <div class="dropdown-item border-bottom p-3 menu-list">
                                             <i class="fa-solid fa-users"></i>
@@ -123,6 +123,10 @@
                                         <div class="dropdown-item border-bottom p-3 menu-list">
                                             <i class="fa-regular fa-file-lines"></i>
                                             <a asp-controller="QuanLyTinTuc" asp-action="QuanLyTinTucNhaTruong" class="dropdown-link fs-6 text-decoration-none "> QUẢN LÝ BÀI VIẾT</a>
+                                        </div>
+                                          <div class="dropdown-item border-bottom p-3 menu-list">
+                                            <i class="fa-regular fa-file-lines"></i>
+                                            <a class="dropdown-link fs-6 text-decoration-none" asp-controller="Dictionary" asp-action="QuanLyTuVung"> QUẢN LÝ TỪ VỰNG </a>
                                         </div>
                                     </div>
                                 </li>

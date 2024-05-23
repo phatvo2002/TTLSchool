@@ -13,5 +13,10 @@ namespace TTLProject2.Controllers
         {
             return View();
         }
+
+        public IActionResult QuanLyTuVung()
+        {
+            return View();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TTLProject2.Bussiness;
 using TTLProject2.Entities;
@@ -6,6 +7,7 @@ using TTLProject2.Models;
 
 namespace TTLProject2.Controllers
 {
+    [Authorize]
 	public class DangKyController : Controller
 	{
         private readonly IReadataRepository _readataRepository;
@@ -73,8 +75,13 @@ namespace TTLProject2.Controllers
 
             return View(model);
 		}
+
+
+
+
+
         [HttpPost]
-        public async Task<IActionResult> Index(DangKiViewModel model)
+        public async Task<IActionResult> ThemMoiThiSinh(DangKiViewModel model)
         {
 
             ViewBag.Isvalid = true;
@@ -84,7 +91,6 @@ namespace TTLProject2.Controllers
             thiSinh.MaDanToc = model.MaDanToc;
             thiSinh.MaTonGiao = model.MaTonGiao;
             thiSinh.HoTen = model.HoTen;
-
             thiSinh.NgaySinh = model.NgaySinh;
             thiSinh.NoiSinh = model.NoiSinh;
             thiSinh.TruongThcs = model.TruongThcs;
@@ -112,7 +118,7 @@ namespace TTLProject2.Controllers
             thiSinh.DiemThiTsToan = model.DiemThiTsToan;
             thiSinh.DiemThiTsNguVan = model.DiemThiTsNguVan;
             thiSinh.DiemThiTsTiengAnh = model.DiemThiTsTiengAnh;
-            thiSinh.TongDiem = model.TongDiem;
+            //thiSinh.TongDiem = model.TongDiem;
             thiSinh.DiaChiNhan = model.DiaChiNhan;
 
             var path = $"{this._hostingEnvironment.WebRootPath}\\files\\{DateTime.Now.Year}";
@@ -143,8 +149,25 @@ namespace TTLProject2.Controllers
                 return Json(new { error = ex.ToString() });
             }
 
+            var nienKhoa = new List<NienKhoa>();
+            nienKhoa.AddRange(await _readataRepository.GetNienKhoa());
+            model.DanhSachNienKhoa = new SelectList(nienKhoa, "MaNienKhoa", "TenNienKhoa");
+            var gioiTinh = new List<GioiTinh>();
+            gioiTinh.AddRange(await _readataRepository.GetGioiTinh());
+            model.DanhSachGioiTinh = new SelectList(gioiTinh, "MaGioiTinh", "TenGioiTinh");
+            var danToc = new List<DanToc>();
+            danToc.AddRange(await _readataRepository.GetDanToc());
+            model.DanhSachDanToc = new SelectList(danToc, "MaDanToc", "TenDanToc");
+            var tonGiao = new List<TonGiao>();
+            tonGiao.AddRange(await _readataRepository.GetTonGiao());
+            model.DanhSachTonGiao = new SelectList(tonGiao, "MaTonGiao", "TenTonGiao");
 
-            return View(model);
+            return Json(new {success = ViewBag.success ,failed = ViewBag.error });
+        }
+
+        public IActionResult QuanLyThiSinhDangKy()
+        {
+            return View();  
         }
     }
 }
